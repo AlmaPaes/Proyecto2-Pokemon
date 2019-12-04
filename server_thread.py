@@ -4,6 +4,8 @@ import socket
 import sys
 import traceback
 import threading 
+import random
+
 def main():
    start_server()
 def start_server():
@@ -35,16 +37,41 @@ def clientThread(connection, ip, port, max_buffer_size = 5120):
    while is_active:
       #client_input = receive_input(connection, max_buffer_size) 
       client_input = connection.recv(max_buffer_size)
-      print(client_input)
-      connection.send(client_input)
-      #if "--QUIT--" in client_input:
-      #   print("Client is requesting to quit")
-      #   connection.close()
-      #   print("Connection " + ip + ":" + port + " closed")
-      #   is_active = False
-      #else:
-         #print("Processed result: {}".format(client_input))
+      codigo = int.from_bytes(client_input,"big")
 
+      if codigo == 10:
+          setIdPokemon = random.randint(0,151)
+          setPokemon = [20,setIdPokemon]
+          connection.send(bytearray(setPokemon))
+          intentos = random.randint(1,5)
+          print("Jugando!")
+          print("Número de intentos: " + str(intentos))
+          intento_acertado = random.randint(1,intentos)
+          intentos_disponibles = intentos
+          intento_actual = 0
+          jugando = True
+          
+          while jugando:
+              respuesta = connection.recv(1)
+              respuesta = int.from_bytes(respuesta,"big")
+              if respuesta == 30:
+                  if intentos_disponibles == 0: #ya no hay intentos disponibles
+                      connection.send(bytearray([23]))
+                      jugando = False
+                  else:
+                      if intento_actual != intento_acertado: #no ha capturado el pokemon
+                          fallido = [21,setIdPokemon,intentos_disponibles]
+                          intento_actual = intento_actual + 1
+                          intentos_disponibles = intentos_disponibles - 1
+                          connection.send(bytearray(fallido))
+                      else: #capturado
+                          connection.send(bytearray([22]))
+                          jugando = False
+              else:
+                  jugando = False
+          
+          print("bai")
+          
 def receive_input(connection, max_buffer_size):
    client_input = connection.recv(max_buffer_size)
    client_input_size = sys.getsizeof(client_input)
