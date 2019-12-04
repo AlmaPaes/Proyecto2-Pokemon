@@ -1,29 +1,29 @@
+#!/usr/bin/env python3
 import socket
 import sys
+
+
 def main():
-   s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+   soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
    host = "127.0.0.1"
    port = 9999
    try:
-      s.connect((host, port))
+      soc.connect((host, port))
    except:
       print("Connection Error")
       sys.exit()
-   message = input("Deseas capturar un Pokemon?\n -> ")
-   while message != 'quit':
-      s.send(message.encode("utf8"))
-      print("Quieres capturar a " + 
-            getPokemon(s.recv(5120).decode("utf8")) + "?")
-      #if s.recv(5120).decode("utf8") == "-":
-      #   pass # null operation
-      message = input(" -> ")
-   s.send(b'--quit--')
-
-def getPokemon(message):
-   if(message[0:2] == "20"):
-      return message[-1]
-   else:
-      return "Error"
-
+   print("Bienvenido a Pokemon Go! ¿Deseas capturar un Pokémon [P], revisar el catálogo? [C] o salir [S]")
+   message = input(" >> ")
+   if message != 'S':
+        if message == 'P':
+            soc.send(bytearray([10]))
+            msg_recived = soc.recv(2)
+            print("Codigo: %i | idPokemon: %i"%(msg_recived[0], msg_recived[1]))
+        #else:
+        #    soc.send(bytes([11]))
+          
+        if soc.recv(5120).decode("utf8") == "-":
+            pass # null operation
+        
 if __name__ == "__main__":
    main()

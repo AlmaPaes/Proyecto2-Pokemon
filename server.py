@@ -1,52 +1,52 @@
+#!/usr/bin/env python3
+
 import socket
 import sys
 import traceback
-from threading import Thread
+import threading 
+import random
 
 def main():
    start_server()
-
 def start_server():
    host = "127.0.0.1"
    port = 9999 # arbitrary non-privileged port
-   s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-   s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+   soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+   soc.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
    print("Socket created")
    try:
-      s.bind((host, port))
+      soc.bind((host, port))
    except:
       print("Bind failed. Error : " + str(sys.exc_info()))
       sys.exit()
-   s.listen(6) # queue up to 6 requests
+   soc.listen(6) # queue up to 6 requests
    print("Socket now listening")
    # infinite loop- do not reset for every requests
    while True:
-      connection, address = s.accept()
-      ip, port = str(address[0]), str(address[1])
-      print("Connected with " + ip + ":" + port)
-      try:
-         Thread(target=client_thread, args=(connection, ip, port)).start()
-      except:
-         print("Thread did not start.")
-         traceback.print_exc()
-   s.close()
+        connection, address = soc.accept()
+        ip, port = str(address[0]), str(address[1])
+        print("Connected with " + ip + ":" + port)
+        try:
+            threading.Thread(target=clientThread, args=(connection, ip, port)).start()
+        except:
+            print("Thread did not start.")
+            traceback.print_exc()
+   soc.close()
 
-def client_thread(connection, ip, port, max_buffer_size = 5120):
+def clientThread(connection, ip, port, max_buffer_size = 5120):
    is_active = True
    while is_active:
-      client_input = receive_input(connection, max_buffer_size)
-      if "--QUIT--" in client_input:
-         print("Client is requesting to quit")
-         connection.close()
-         print("Connection " + ip + ":" + port + " closed")
-         is_active = False
-      if 'P' in client_input:
-         connection.send("20x".encode("utf8"))
-      #if "Si" in client_input:
-      #   print("Te quedan k intentos")
-      else:
-         print("Processed result: {}".format(client_input))
-         connection.sendall("-".encode("utf8"))
+      #client_input = receive_input(connection, max_buffer_size) 
+      client_input = connection.recv(max_buffer_size)
+      codigo = int.from_bytes(client_input, "big")
+      if codigo == 10:
+         idPokemon = random.randrange(0,152)
+         lst = [codigo, idPokemon]
+         message = bytearray(lst)
+         connection.send(message)
+      
+      #else:
+      #   print("Processed result: {}".format(client_input))
 
 def receive_input(connection, max_buffer_size):
    client_input = connection.recv(max_buffer_size)
@@ -56,10 +56,8 @@ def receive_input(connection, max_buffer_size):
    decoded_input = client_input.decode("utf8").rstrip()
    result = process_input(decoded_input)
    return result
-
 def process_input(input_str):
    print("Processing the input received from client")
    return "Hello " + str(input_str).upper()
-
 if __name__ == "__main__":
    main()
