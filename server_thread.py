@@ -33,15 +33,18 @@ def start_server():
 def clientThread(connection, ip, port, max_buffer_size = 5120):
    is_active = True
    while is_active:
-      client_input = receive_input(connection, max_buffer_size) 
-      if "--QUIT--" in client_input:
-         print("Client is requesting to quit")
-         connection.close()
-         print("Connection " + ip + ":" + port + " closed")
-         is_active = False
-      else:
-         print("Processed result: {}".format(client_input))
-         connection.sendall("-".encode("utf8"))
+      #client_input = receive_input(connection, max_buffer_size) 
+      client_input = connection.recv(max_buffer_size)
+      print(client_input)
+      connection.send(client_input)
+      #if "--QUIT--" in client_input:
+      #   print("Client is requesting to quit")
+      #   connection.close()
+      #   print("Connection " + ip + ":" + port + " closed")
+      #   is_active = False
+      #else:
+         #print("Processed result: {}".format(client_input))
+
 def receive_input(connection, max_buffer_size):
    client_input = connection.recv(max_buffer_size)
    client_input_size = sys.getsizeof(client_input)
