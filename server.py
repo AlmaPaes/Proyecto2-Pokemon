@@ -34,6 +34,7 @@ def start_server():
             print("Thread did not start.")
             traceback.print_exc()
    soc.close()
+
 def clientThread(connection, ip, port, max_buffer_size = 5120):
    is_active = True
    while is_active:

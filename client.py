@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 import socket
 import sys
 
@@ -94,6 +93,9 @@ def main():
    else:
         cerrarSesion(soc)
             #print("hola")
+            soc.send(bytearray([10]))
+            msg_recived = soc.recv(2)
+            print("Codigo: %i | idPokemon: %i"%(msg_recived[0], msg_recived[1]))
         #else:
         #    soc.send(bytes([11]))
           
