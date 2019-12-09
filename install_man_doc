@@ -2,8 +2,8 @@
 
 rutaMan=/usr/share/man/man7
 
-sudo cp pokemon-client.7.gz /usr/share/man/man7
+sudo cp client.7.gz $rutaMan
 
-sudo cp pokemon-server.7.gz /usr/share/man/man7
+sudo cp server.7.gz $rutaMan
 
 sudo mandb

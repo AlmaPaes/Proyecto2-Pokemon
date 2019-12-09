@@ -1,0 +1,3 @@
+CREATE DATABASE `TCP201-Pokemon`;
+
+\q
