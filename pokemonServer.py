@@ -9,7 +9,7 @@ import random
 def main():
     """ Función principal.
     """
-   start_server(sys.argv[1])
+    start_server(sys.argv[1])
    
 def start_server(ip_dir):
     """Inicialización del servidor
@@ -18,31 +18,31 @@ def start_server(ip_dir):
     :type ip_dir: Cadena
     :returns: Nada
     """
-   host = ip_dir
-   port = 9999 # arbitrary non-privileged port
-   soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-   soc.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-   print("Socket created")
-   try:
-      soc.bind((host, port))
-   except:
-      print("Bind failed. Error : " + str(sys.exc_info()))
-      sys.exit()
-   soc.listen(6) # queue up to 6 requests
-   print("Socket now listening")
-   # infinite loop => do not reset for every requests
-   while True:
-        #connection = host | address = port
-        connection, address = soc.accept() 
-        #soc.settimeout(10)  
-        ip, port = str(address[0]), str(address[1])
-        print("Connected with " + ip + ":" + port)
-        try:
-            threading.Thread(target=clientThread, args=(connection, ip, port)).start()
-        except:
-            print("Thread did not start.")
-            traceback.print_exc()
-   soc.close()
+    host = ip_dir
+    port = 9999 # arbitrary non-privileged port
+    soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    soc.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    print("Socket created")
+    try:
+        soc.bind((host, port))
+    except:
+        print("Bind failed. Error : " + str(sys.exc_info()))
+        sys.exit()
+    soc.listen(6) # queue up to 6 requests
+    print("Socket now listening")
+    # infinite loop => do not reset for every requests
+    while True:
+            #connection = host | address = port
+            connection, address = soc.accept() 
+            #soc.settimeout(10)  
+            ip, port = str(address[0]), str(address[1])
+            print("Connected with " + ip + ":" + port)
+            try:
+                threading.Thread(target=clientThread, args=(connection, ip, port)).start()
+            except:
+                print("Thread did not start.")
+                traceback.print_exc()
+    soc.close()
 
 def clientThread(connection, ip, port, max_buffer_size = 5120):
     """Manejador del hilo que sostiene la conexión entre el servidor y un cliente
@@ -57,28 +57,28 @@ def clientThread(connection, ip, port, max_buffer_size = 5120):
     :type max_buffer_size: Entero
     :returns: Nada
     """
-   connection.settimeout(10)     #Establecemos timeout a cada hilo
-   is_active = True
-   if giveAccess(connection) == 0:
-        is_active = False
-        
-   while is_active:
-      #client_input = receive_input(connection, max_buffer_size) 
-      try:
-        client_input = connection.recv(max_buffer_size)
-        codigo = int.from_bytes(client_input,"big")
-        if codigo == 10:
-            playPokemonGo(connection)
+    connection.settimeout(10)     #Establecemos timeout a cada hilo
+    is_active = True
+    if giveAccess(connection) == 0:
             is_active = False
-        if codigo == 32:
-            is_active = False
-            #print(connection.fileno()) -> socket.status
-      except socket.timeout as timeout:
-          print("Tiempo de respuesta excedido: 10 segundos")
-          avisoTimeout(connection)
-          cerrarSesion(connection)
-          is_active = False       
-   cerrarSesion(connection)
+            
+    while is_active:
+        #client_input = receive_input(connection, max_buffer_size) 
+        try:
+            client_input = connection.recv(max_buffer_size)
+            codigo = int.from_bytes(client_input,"big")
+            if codigo == 10:
+                playPokemonGo(connection)
+                is_active = False
+            if codigo == 32:
+                is_active = False
+                #print(connection.fileno()) -> socket.status
+        except socket.timeout as timeout:
+            print("Tiempo de respuesta excedido: 10 segundos")
+            avisoTimeout(connection)
+            cerrarSesion(connection)
+            is_active = False       
+    cerrarSesion(connection)
    
 def giveAccess(connection,max_buffer_size = 5120):
     """Autentifica a usuarios registrados y proporciona acceso a la ejecución de la aplicación

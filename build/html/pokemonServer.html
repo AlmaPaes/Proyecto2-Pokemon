@@ -168,32 +168,100 @@
 <dl class="function">
 <dt id="pokemonServer.avisoTimeout">
 <code class="sig-prename descclassname">pokemonServer.</code><code class="sig-name descname">avisoTimeout</code><span class="sig-paren">(</span><em class="sig-param">connection</em><span class="sig-paren">)</span><a class="headerlink" href="#pokemonServer.avisoTimeout" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Manda el mensaje de cierre de sesión al cliente por tiempo de espera excedido (timeout)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>connection</strong> (<em>Conexión</em>) – Conexión entre el cliente y el servidor</p>
+</dd>
+<dt class="field-even">Devuelve</dt>
+<dd class="field-even"><p>Nada</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="function">
 <dt id="pokemonServer.cerrarSesion">
 <code class="sig-prename descclassname">pokemonServer.</code><code class="sig-name descname">cerrarSesion</code><span class="sig-paren">(</span><em class="sig-param">connection</em><span class="sig-paren">)</span><a class="headerlink" href="#pokemonServer.cerrarSesion" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Cierre de sesión entre el servidor y el cliente al cual le pertenece la conexión</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>connection</strong> (<em>Conexión</em>) – Conexión entre el cliente y el servidor</p>
+</dd>
+<dt class="field-even">Devuelve</dt>
+<dd class="field-even"><p>Nada</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="function">
 <dt id="pokemonServer.clientThread">
 <code class="sig-prename descclassname">pokemonServer.</code><code class="sig-name descname">clientThread</code><span class="sig-paren">(</span><em class="sig-param">connection</em>, <em class="sig-param">ip</em>, <em class="sig-param">port</em>, <em class="sig-param">max_buffer_size=5120</em><span class="sig-paren">)</span><a class="headerlink" href="#pokemonServer.clientThread" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Manejador del hilo que sostiene la conexión entre el servidor y un cliente</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>connection</strong> (<em>Conexión</em>) – Conexión entre el servidor y el cliente que abrió el hilo</p></li>
+<li><p><strong>ip</strong> (<em>Cadena</em>) – Dirección IP de la conexión</p></li>
+<li><p><strong>port</strong> (<em>Entero</em>) – Puerto a través del cual el servidor mantiene la conexión con el cliente</p></li>
+<li><p><strong>max_buffer_size</strong> (<em>Entero</em>) – Número máximo de bytes que puede recibir en un paquete del cliente</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve</dt>
+<dd class="field-even"><p>Nada</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pokemonServer.giveAccess">
+<code class="sig-prename descclassname">pokemonServer.</code><code class="sig-name descname">giveAccess</code><span class="sig-paren">(</span><em class="sig-param">connection</em>, <em class="sig-param">max_buffer_size=5120</em><span class="sig-paren">)</span><a class="headerlink" href="#pokemonServer.giveAccess" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Autentifica a usuarios registrados y proporciona acceso a la ejecución de la aplicación</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>connection</strong> (<em>Conexión</em>) – Conexión entre el servidor y el cliente que abrió el hilo</p></li>
+<li><p><strong>max_buffer_size</strong> (<em>Entero</em>) – Número máximo de bytes que puede recibir en un paquete del cliente</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve</dt>
+<dd class="field-even"><p>int - Indicador de acceso permitido</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="function">
 <dt id="pokemonServer.main">
 <code class="sig-prename descclassname">pokemonServer.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pokemonServer.main" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Función principal.</p>
+</dd></dl>
 
 <dl class="function">
 <dt id="pokemonServer.playPokemonGo">
 <code class="sig-prename descclassname">pokemonServer.</code><code class="sig-name descname">playPokemonGo</code><span class="sig-paren">(</span><em class="sig-param">connection</em><span class="sig-paren">)</span><a class="headerlink" href="#pokemonServer.playPokemonGo" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Método que simula el comportamiento del juego Pokemon Go</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>connection</strong> (<em>Conexión</em>) – Conexión entre el servidor y el cliente</p>
+</dd>
+<dt class="field-even">Devuelve</dt>
+<dd class="field-even"><p>Nada</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="function">
 <dt id="pokemonServer.start_server">
-<code class="sig-prename descclassname">pokemonServer.</code><code class="sig-name descname">start_server</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pokemonServer.start_server" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd></dd></dl>
+<code class="sig-prename descclassname">pokemonServer.</code><code class="sig-name descname">start_server</code><span class="sig-paren">(</span><em class="sig-param">ip_dir</em><span class="sig-paren">)</span><a class="headerlink" href="#pokemonServer.start_server" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Inicialización del servidor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>ip_dir</strong> (<em>Cadena</em>) – Dirección IP del socket al cual se va aconectar el servidor</p>
+</dd>
+<dt class="field-even">Devuelve</dt>
+<dd class="field-even"><p>Nada</p>
+</dd>
+</dl>
+</dd></dl>
 
 </div>
 

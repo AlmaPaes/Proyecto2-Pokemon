@@ -36,8 +36,8 @@ def login(soc):
         sys.exit()
 
 def playPokemon(soc):
-     """Permite que el usuario juegue Pokemon Go
-    
+    """Permite que el usuario juegue Pokemon Go
+
     :param soc: Socket de la conexión
     :type soc: Socket
     :returns: Nada
@@ -140,34 +140,34 @@ def muestraPokemon(bytes):
 def main():
     """ Función principal
     """
-   soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-   host = sys.argv[1]
-   port = sys.argv[2]
-   try:
-      soc.connect((host, port))
-      #soc.settimeout(10)
-   except:
-      print("Connection Error")
-      sys.exit()
-   login(soc)
-   opcion_correcta = False
-   #try:
-   while opcion_correcta == False:
-       print("Bienvenido a Pokemon Go! ¿Deseas capturar un Pokémon [P], revisar el catálogo? [C] o salir [S]?")
-       message = input(" >> ")
-       if message == 'S' or message == 'P' or message == 'C':
-           opcion_correcta = True
-   #except socket.timeout as timeout:
-    #   cerrarPorTimeout(soc)
+    soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    host = sys.argv[1]
+    port = sys.argv[2]
+    try:
+        soc.connect((host, port))
+        #soc.settimeout(10)
+    except:
+        print("Connection Error")
+        sys.exit()
+    login(soc)
+    opcion_correcta = False
+    #try:
+    while opcion_correcta == False:
+        print("Bienvenido a Pokemon Go! ¿Deseas capturar un Pokémon [P], revisar el catálogo? [C] o salir [S]?")
+        message = input(" >> ")
+        if message == 'S' or message == 'P' or message == 'C':
+            opcion_correcta = True
+    #except socket.timeout as timeout:
+        #   cerrarPorTimeout(soc)
 
-   if message != 'S':
-        if message == 'P':
-            playPokemon(soc)
-        else:
-            print("Mostrando catálogo")
+    if message != 'S':
+            if message == 'P':
+                playPokemon(soc)
+            else:
+                print("Mostrando catálogo")
 
-   else:
-        cerrarSesion(soc)
+    else:
+            cerrarSesion(soc)
         
 if __name__ == "__main__":
    main()
