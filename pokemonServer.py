@@ -6,7 +6,6 @@ import sys
 import traceback
 import threading 
 import random
-import pickle
 
 CONFIG = {
     'user': 'doggos',
@@ -230,14 +229,17 @@ def muestraPokedex(connection):
             cursor.execute("SELECT Nombre FROM Pokemon WHERE idPokemon = %i"%(i[0]))
             pokemon = cursor.fetchone()[0]
             pokedex.append(pokemon)
-        size = sys.getsizeof(pokedex)
+        size = len(pokedex)
         size_bytes = size.to_bytes(4, "big")
         connection.send(bytearray([24]))
         if connection.recv(1)[0] == 33:
             connection.send(size_bytes)
         if connection.recv(1)[0] == 33:
-            msg = pickle.dumps(pokedex)
-            connection.send(msg)
+            for pokemon in pokedex:
+                pokemon_size = len(pokemon).to_bytes(1,"big")
+                connection.send(pokemon_size)
+                if connection.recv(1)[0] == 33:
+                    connection.send(pokemon.encode("utf-8"))
         cerrarSesion(connection)
     except socket.timeout as timeout:
         print("Tiempo de respuesta excedido: 10 segundos")

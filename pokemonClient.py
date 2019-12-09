@@ -2,11 +2,13 @@
 
 import socket
 import sys
+import matplotlib
+matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 from PIL import Image
 import io
 import numpy as np
-import pickle
+import tkinter
 
 CODIGO_YES = bytearray([30])
 CODIGO_NO = bytearray([31])
@@ -140,10 +142,15 @@ def muestraPokedex(soc, usuario):
         respuesta = soc.recv(1)[0]
         if respuesta == 24:
             soc.send(CODIGO_ACK)
-            size = int.from_bytes(soc.recv(4),"big")
+            size_pokedex = int.from_bytes(soc.recv(4),"big")
             soc.send(CODIGO_ACK)
-            modelo = soc.recv(size)
-            pokedex = pickle.loads(modelo)
+            pokedex = []
+            for i in range(size_pokedex):
+                pokemon_size = int.from_bytes(soc.recv(1),"big")
+                soc.send(CODIGO_ACK)
+                modelo = soc.recv(pokemon_size)
+                pokemon = modelo.decode("utf-8")
+                pokedex.append(pokemon)
             displayPokedex(pokedex)
     except socket.timeout as timeout:
         cerrarPorTimeout(soc)
@@ -165,7 +172,6 @@ def muestraCatalogo(soc, usuario):
                 pokemon_size = int.from_bytes(soc.recv(1),"big")
                 soc.send(CODIGO_ACK)
                 modelo = soc.recv(pokemon_size)
-                #print(modelo)
                 pokemon = modelo.decode("utf-8")
                 catalogo.append(pokemon)
             displayCatalogo(catalogo)
