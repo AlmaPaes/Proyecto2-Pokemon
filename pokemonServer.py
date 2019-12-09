@@ -87,7 +87,6 @@ def clientThread(connection, ip, port, max_buffer_size = 5120):
                 is_active = False
             if codigo == 32:
                 is_active = False
-                #print(connection.fileno()) -> socket.status
         except socket.timeout as timeout:
             print("Tiempo de respuesta excedido: 10 segundos")
             avisoTimeout(connection)
@@ -204,6 +203,7 @@ def avisoTimeout(connection):
     :returns: Nada
     """
     connection.send(bytearray([40]))
+    #time.sleep(5)
 
 def guardaEnPokedex(idPokemon):
     cnx = mysql.connect(**CONFIG)
