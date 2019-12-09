@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 
-import socket
-import sys
 import matplotlib
 matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 from PIL import Image
 import io
 import numpy as np
+import getpass
 import tkinter
+import socket
+import sys
 
 CODIGO_YES = bytearray([30])
 CODIGO_NO = bytearray([31])
@@ -26,7 +27,7 @@ def login(soc):
     user = input(" >> ")
     
     print("Ingrese la contraseña")
-    psswd = input(" >> ")
+    psswd = getpass.getpass(" >> ")
     
     soc.send(user.encode(encoding='UTF-8'))
     soc.recv(1)
