@@ -6,13 +6,12 @@ import sys
 import traceback
 import threading 
 import random
-import pickle
 
 CONFIG = {
     'user': 'doggos',
     'password': 'doggos2020',
     'host': 'localhost',
-    'database': 'TPC201-Pokemon',
+    'database': 'TCP201-Pokemon',
     'raise_on_warnings': True
 }
 
@@ -38,7 +37,7 @@ def start_server(ip_dir):
     except:
         print("Bind failed. Error : " + str(sys.exc_info()))
         sys.exit()
-    soc.listen(6) # queue up to 6 requests
+    soc.listen(10) # queue up to 6 requests
     print("Socket now listening")
     # infinite loop => do not reset for every requests
     while True:
@@ -105,19 +104,36 @@ def giveAccess(connection,max_buffer_size = 5120):
     :type max_buffer_size: Entero
     :returns: int - Indicador de acceso permitido
     """
-    user = connection.recv(max_buffer_size)
-    user = user.decode('UTF-8')
+    try:
+        user = connection.recv(max_buffer_size)
+        user = user.decode('UTF-8')
 
-    connection.send(bytearray([0]))
+        connection.send(bytearray([0]))
     
-    psswd = connection.recv(max_buffer_size)
-    psswd = psswd.decode('UTF-8')
+        psswd = connection.recv(max_buffer_size)
+        psswd = psswd.decode('UTF-8')
+    except socket.timeout as timeout:
+        print("Tiempo de respuesta excedido: 10 segundos")
+        avisoTimeout(connection)
+        cerrarSesion(connection)
     
-    s1 = 'Alma'
-    s2 = 'alma'
+    cnx = mysql.connect(**CONFIG)
+    cursor = cnx.cursor()
+    
+    correctPsswd = ""
+    query = "SELECT Nombre,Pwd FROM Usuario WHERE Nombre = '" + user + "'"
+    #print(query)
+    cursor.execute(query)
+    todo = cursor.fetchone()
+    if todo is not None:
+        nombre = todo[0]
+        correctPsswd = todo[1]
+        #print(todo)
+
+    
     acceso = 0
     
-    if s1 == user and s2 == psswd:
+    if correctPsswd == psswd:
         acceso = 1
         
     #resp = int.from_bytes(connection.recv(1),"big")
