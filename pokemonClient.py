@@ -144,10 +144,37 @@ def muestraPokedex(soc, usuario):
             soc.send(CODIGO_ACK)
             modelo = soc.recv(size)
             pokedex = pickle.loads(modelo)
-            print(pokedex)
+            displayPokedex(pokedex)
     except socket.timeout as timeout:
         cerrarPorTimeout(soc)
-    
+
+def displayPokedex(pokedex):
+    for col1,col2 in zip(pokedex[::2],pokedex[1::2]):
+	    print(col1+",",col2+",")
+
+def muestraCatalogo(soc, usuario):
+    try:
+        soc.send(bytearray([12]))
+        respuesta = soc.recv(1)[0]
+        if respuesta == 25:
+            soc.send(CODIGO_ACK)
+            size_catalogo = int.from_bytes(soc.recv(4),"big")
+            soc.send(CODIGO_ACK)
+            catalogo = []
+            for i in range(size_catalogo):
+                pokemon_size = int.from_bytes(soc.recv(1),"big")
+                soc.send(CODIGO_ACK)
+                modelo = soc.recv(pokemon_size)
+                #print(modelo)
+                pokemon = modelo.decode("utf-8")
+                catalogo.append(pokemon)
+            displayCatalogo(catalogo)
+    except socket.timeout as timeout:
+        cerrarPorTimeout(soc)
+
+def displayCatalogo(catalogo):
+    for col1,col2,col3,col4,col5,col6 in zip(catalogo[::6],catalogo[1::6],catalogo[2::6],catalogo[3::6],catalogo[4::6],catalogo[5::6]):
+        print (col1+",",col2+",",col3+",",col4+",",col5+",",col6+",")
     
 def main():
     """ Función principal
@@ -178,6 +205,9 @@ def main():
             if message == 'X':
                 print("Mostrando Pokedex...")
                 muestraPokedex(soc, "usuario")
+            if message == 'C':
+                print("Mostrando catálogo...")
+                muestraCatalogo(soc,"usuario")
             
             #print("Mostrando catálogo")
 

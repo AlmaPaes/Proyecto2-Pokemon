@@ -16,12 +16,18 @@ user = "'%s'" % user
 cursor.execute("SELECT Pokemon FROM Pokedex WHERE Usuario = 5")
 result = cursor.fetchall()
 pokedex = []
-j = 0
 for i in result:
 	cursor.execute("SELECT Nombre FROM Pokemon WHERE idPokemon = %i"%(i[0]))
 	pokemon = cursor.fetchone()[0]
 	pokedex.append(pokemon)
-	j+=1
-for pokemon in pokedex:
-	print(pokemon)
-#cnx.commit()
+for col1,col2 in zip(pokedex[::2],pokedex[1::2]):
+	print(col1+",",col2+",")
+print("\n\n")
+cursor.execute("SELECT Nombre FROM Pokemon")
+result = cursor.fetchall()
+catalogo = []
+for i in result:
+	catalogo.append(i[0])
+for col1,col2,col3,col4,col5,col6 in zip(catalogo[::6],catalogo[1::6],catalogo[2::6],catalogo[3::6],catalogo[4::6],catalogo[5::6]):
+	print (col1+",",col2+",",col3+",",col4+",",col5+",",col6+",")
+#cnx.commit() -> guardar el insert to

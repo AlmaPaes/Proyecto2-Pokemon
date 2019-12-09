@@ -83,6 +83,9 @@ def clientThread(connection, ip, port, max_buffer_size = 5120):
             if codigo == 11:    #ver pokedex
                 muestraPokedex(connection)
                 is_active = False
+            if codigo == 12:    #ver catalogo
+                muestraCatalogo(connection)
+                is_active = False
             if codigo == 32:
                 is_active = False
                 #print(connection.fileno()) -> socket.status
@@ -223,13 +226,10 @@ def muestraPokedex(connection):
         cursor.execute("SELECT Pokemon FROM Pokedex WHERE Usuario = 5")
         result = cursor.fetchall()
         pokedex = []
-        j = 0
         for i in result:
             cursor.execute("SELECT Nombre FROM Pokemon WHERE idPokemon = %i"%(i[0]))
             pokemon = cursor.fetchone()[0]
             pokedex.append(pokemon)
-            j+=1
-        print(pokedex)
         size = sys.getsizeof(pokedex)
         size_bytes = size.to_bytes(4, "big")
         connection.send(bytearray([24]))
@@ -238,6 +238,32 @@ def muestraPokedex(connection):
         if connection.recv(1)[0] == 33:
             msg = pickle.dumps(pokedex)
             connection.send(msg)
+        cerrarSesion(connection)
+    except socket.timeout as timeout:
+        print("Tiempo de respuesta excedido: 10 segundos")
+        avisoTimeout(connection)
+        cerrarSesion(connection)
+    
+def muestraCatalogo(connection):
+    try:
+        cnx = mysql.connect(**CONFIG)
+        cursor = cnx.cursor()
+        cursor.execute("SELECT Nombre FROM Pokemon")
+        result = cursor.fetchall()
+        catalogo = []
+        for i in result:
+            catalogo.append(i[0])
+        size = len(catalogo)
+        size_bytes = size.to_bytes(4, "big")
+        connection.send(bytearray([25]))
+        if connection.recv(1)[0] == 33:
+            connection.send(size_bytes)
+        if connection.recv(1)[0] == 33:
+            for pokemon in catalogo:
+                pokemon_size = len(pokemon).to_bytes(1,"big")
+                connection.send(pokemon_size)
+                if connection.recv(1)[0] == 33:
+                    connection.send(pokemon.encode("utf-8"))
         cerrarSesion(connection)
     except socket.timeout as timeout:
         print("Tiempo de respuesta excedido: 10 segundos")
