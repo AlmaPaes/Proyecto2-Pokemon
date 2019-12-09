@@ -9,14 +9,16 @@ import random
 def main():
     """ Función principal.
     """
-    start_server()
+    start_server(sys.argv[1])
    
-def start_server():
+def start_server(ip_dir):
     """Inicialización del servidor
-
+    
+    :param ip_dir: Dirección IP del socket al cual se va aconectar el servidor
+    :type ip_dir: Cadena
     :returns: Nada
     """
-    host = "127.0.0.1"
+    host = ip_dir
     port = 9999 # arbitrary non-privileged port
     soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     soc.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -58,8 +60,8 @@ def clientThread(connection, ip, port, max_buffer_size = 5120):
     connection.settimeout(10)     #Establecemos timeout a cada hilo
     is_active = True
     if giveAccess(connection) == 0:
-        is_active = False
-    
+            is_active = False
+            
     while is_active:
         #client_input = receive_input(connection, max_buffer_size) 
         try:
@@ -73,10 +75,11 @@ def clientThread(connection, ip, port, max_buffer_size = 5120):
                 #print(connection.fileno()) -> socket.status
         except socket.timeout as timeout:
             print("Tiempo de respuesta excedido: 10 segundos")
+            avisoTimeout(connection)
             cerrarSesion(connection)
             is_active = False       
     cerrarSesion(connection)
-    
+   
 def giveAccess(connection,max_buffer_size = 5120):
     """Autentifica a usuarios registrados y proporciona acceso a la ejecución de la aplicación
     
@@ -115,17 +118,17 @@ def playPokemonGo(connection):
     :returns: Nada
     """
     try:
-        setIdPokemon = random.randint(0,151)
+        setIdPokemon = random.randint(1,151)
         setPokemon = [20,setIdPokemon]
         connection.send(bytearray(setPokemon))
-        intentos = random.randint(1,5)
+        intentos = random.randint(1,6)
         print("Jugando!")
         print("Número de intentos: " + str(intentos))
         intento_acertado = random.randint(1,intentos)
         intentos_disponibles = intentos
         intento_actual = 1
         jugando = True
-        
+
         while jugando:
             try:
                 respuesta = connection.recv(1)
@@ -137,35 +140,54 @@ def playPokemonGo(connection):
                     else:
                         if intento_actual != intento_acertado: #no ha capturado el pokemon
                             intentos_disponibles = intentos_disponibles - 1
-                            fallido = [21,setIdPokemon,intentos_disponibles]
+                            fallido = bytearray([21,setIdPokemon,intentos_disponibles])
                             intento_actual = intento_actual + 1
-                            connection.send(bytearray(fallido))
+                            connection.send(fallido)
                         else: #capturado
-                            connection.send(bytearray([22]))
+                            msg = bytearray([22,setIdPokemon])
+                            connection.send(msg)
+                            ruta_img = "pokemons/"
+                            ruta_img += str(setIdPokemon) + ".png"
+                            img = open(ruta_img, 'rb')
+                            bytes = img.read()
+                            size = len(bytes)
+                            size_bytes = size.to_bytes(4, 'big')
+                            if connection.recv(1)[0] == 33:
+                                connection.send(size_bytes)
+                            if connection.recv(1)[0] == 33:
+                                connection.send(bytes)
                             jugando = False
                 else:#ya no quiere jugar
                     jugando = False
             except socket.timeout as timeout:
                 print("Tiempo de respuesta excedido: 10 segundos")
-                #sys.exit()
-                #connection.send(bytearray([40])) -> Mensaje de error
+                avisoTimeout(connection)
                 cerrarSesion(connection)
                 jugando = False
         
         #print("bai")
     except socket.timeout as timeout:
         print("Tiempo de respuesta excedido: 10 segundos")
-        #sys.exit()
+        avisoTimeout(connection)
         cerrarSesion(connection)
     
 def cerrarSesion(connection):
     """Cierre de sesión entre el servidor y el cliente al cual le pertenece la conexión
     
     :param connection: Conexión entre el cliente y el servidor
+    :type connection: Conexión
     :returns: Nada
     """
-    #connection.shutdown(socket.SHUT_RDWR)
     connection.close()
+
+def avisoTimeout(connection):
+    """Manda el mensaje de cierre de sesión al cliente por tiempo de espera excedido (timeout)
     
+    :param connection: Conexión entre el cliente y el servidor
+    :type connection: Conexión
+    :returns: Nada
+    """
+    connection.send(bytearray([40]))
+
 if __name__ == "__main__":
    main()
