@@ -8,6 +8,8 @@ import io
 import numpy as np
 import getpass
 import tkinter
+import socket
+import sys
 
 CODIGO_YES = bytearray([30])
 CODIGO_NO = bytearray([31])
