@@ -11,6 +11,8 @@ config = {
 cnx = mysql.connect(**config)
 cursor = cnx.cursor()
 #cursor.execute("""INSERT INTO Pokedex (Usuario, Pokemon) VALUES (5, 135)""")
-cursor.execute("""SELECT idUsuario FROM Usuario WHERE Nombre = 'Alejandro'	""")
+user = "Ismael"
+user = "'%s'" % user
+cursor.execute("SELECT idUsuario FROM Usuario WHERE Nombre = %s"%(user))
 print(cursor.fetchone()[0])
 #cnx.commit()
