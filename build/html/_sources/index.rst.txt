@@ -11,19 +11,23 @@ Pokemon Go!
 ¿Cómo usar?
 ===========
 
+.. note :: Primero inicializamos el servidor, y después los clientes pueden iniciar una conexión
+
 * Para el servidor
 
     - Pasos previos para instalar la base de datos. Revisar archivo.
     
-    - En una terminal, nos situamos en la ubicación del archivo *server.py*
+    - En una terminal, nos situamos en la ubicación del archivo *pokemonServer.py*
     
-    - El programa no requiere parámetros adicionales para su funcionamiento. Ejecutamos en terminal *./server.py*
+    - Para que se pueda establecer la comunicación satisfactoriamente, necesitamos ingresar la dirección IP al momento de iniciar el servidor. Por lo tanto, ejecutamos *./pokemonServer.py <IP>*
     
 * Para el cliente
 
-    - En una terminal, nos situamos en la ubicación del archivo *client.py*
+    - En una terminal, nos situamos en la ubicación del archivo *pokemonClient.py*
     
-    - Este programa recibe como parámetros iniciales la dirección IP a través de la cual se quiere conectar, y el puerto. Por lo tanto, ejecutamos de la siguiente manera: *./client.py <IP> <port>*
+    - Este programa recibe como parámetros iniciales la dirección IP a través de la cual se quiere conectar, y el puerto. Por lo tanto, ejecutamos de la siguiente manera: *./pokemonClient.py <IP> <port>*
+    
+.. note :: La dirección IP ingresada al ejecutar el cliente y el servidor debe ser la misma
 
 Programas involucrados
 ========================

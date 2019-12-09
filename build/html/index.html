@@ -41,7 +41,7 @@
               href="genindex.html"/>
         <link rel="search" title="Búsqueda" href="search.html"/>
     <link rel="top" title="documentación de Proyecto2-Pokemon - " href="#"/>
-        <link rel="next" title="pokemonClient module" href="pokemonClient.html"/> 
+        <link rel="next" title="Cliente Pokemon Go!" href="pokemonClient.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -91,8 +91,8 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="pokemonClient.html">pokemonClient module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pokemonServer.html">pokemonServer module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pokemonClient.html">Cliente Pokemon Go!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pokemonServer.html">Servidor Pokemon Go!</a></li>
 </ul>
 
             
@@ -153,7 +153,7 @@
   
   <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
       
-        <a href="pokemonClient.html" class="btn btn-neutral float-right" title="pokemonClient module" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="pokemonClient.html" class="btn btn-neutral float-right" title="Cliente Pokemon Go!" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
   </div>
@@ -171,33 +171,41 @@
 </div>
 <div class="section" id="como-usar">
 <h2>¿Cómo usar?<a class="headerlink" href="#como-usar" title="Enlazar permanentemente con este título">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Primero inicializamos el servidor, y después los clientes pueden iniciar una conexión</p>
+</div>
 <ul>
 <li><p>Para el servidor</p>
 <blockquote>
 <div><ul class="simple">
 <li><p>Pasos previos para instalar la base de datos. Revisar archivo.</p></li>
-<li><p>En una terminal, nos situamos en la ubicación del archivo <em>server.py</em></p></li>
-<li><p>El programa no requiere parámetros adicionales para su funcionamiento. Ejecutamos en terminal <em>./server.py</em></p></li>
+<li><p>En una terminal, nos situamos en la ubicación del archivo <em>pokemonServer.py</em></p></li>
+<li><p>Para que se pueda establecer la comunicación satisfactoriamente, necesitamos ingresar la dirección IP al momento de iniciar el servidor. Por lo tanto, ejecutamos <em>./pokemonServer.py &lt;IP&gt;</em></p></li>
 </ul>
 </div></blockquote>
 </li>
 <li><p>Para el cliente</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>En una terminal, nos situamos en la ubicación del archivo <em>client.py</em></p></li>
-<li><p>Este programa recibe como parámetros iniciales la dirección IP a través de la cual se quiere conectar, y el puerto. Por lo tanto, ejecutamos de la siguiente manera: <em>./client.py &lt;IP&gt; &lt;port&gt;</em></p></li>
+<li><p>En una terminal, nos situamos en la ubicación del archivo <em>pokemonClient.py</em></p></li>
+<li><p>Este programa recibe como parámetros iniciales la dirección IP a través de la cual se quiere conectar, y el puerto. Por lo tanto, ejecutamos de la siguiente manera: <em>./pokemonClient.py &lt;IP&gt; &lt;port&gt;</em></p></li>
 </ul>
 </div></blockquote>
 </li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>La dirección IP ingresada al ejecutar el cliente y el servidor debe ser la misma</p>
+</div>
 </div>
 <div class="section" id="programas-involucrados">
 <h2>Programas involucrados<a class="headerlink" href="#programas-involucrados" title="Enlazar permanentemente con este título">¶</a></h2>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="pokemonClient.html">pokemonClient module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pokemonServer.html">pokemonServer module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pokemonClient.html">Cliente Pokemon Go!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pokemonServer.html">Servidor Pokemon Go!</a></li>
 </ul>
 </div>
 </div>
@@ -213,7 +221,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="pokemonClient.html" class="btn btn-neutral float-right" title="pokemonClient module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="pokemonClient.html" class="btn btn-neutral float-right" title="Cliente Pokemon Go!" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
     </div>
