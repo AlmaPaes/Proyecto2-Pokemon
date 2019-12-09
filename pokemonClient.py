@@ -56,9 +56,7 @@ def playPokemon(soc):
             while jugando:
                 try:
                     mensaje = soc.recv(10)
-                    #print(mensaje[0])
                     respuesta = mensaje[0]
-                    #respuesta = int.from_bytes(mensaje[0],"big")
                     
                     if respuesta == 21: #aun tienes intentos
                         print("¿Intentar captura de nuevo? Quedan " + str(mensaje[2]) + " intentos")
@@ -79,9 +77,7 @@ def playPokemon(soc):
                             jugando = False
                     else:
                         if respuesta == 22:#capturaste al pokemon
-                            #print("va bien")
                             soc.send(CODIGO_ACK)
-                            print("Capturaste al pokemon: "+ str(mensaje[1]))
                             img_size = int.from_bytes(soc.recv(4),"big")
                             soc.send(CODIGO_ACK)
                             img_bytes = soc.recv(img_size)

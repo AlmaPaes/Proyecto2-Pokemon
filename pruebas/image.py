@@ -4,7 +4,7 @@ import io
 import numpy as np
 
 #img = mpimg.imread('pokemons/135.png')
-myfile = open("pokemons/135.png", 'rb')
+myfile = open("../pokemons/7.png", 'rb')
 bytes = myfile.read()
 size = len(bytes)
 image = Image.open(io.BytesIO(bytes))

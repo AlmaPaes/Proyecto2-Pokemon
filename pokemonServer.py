@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import mysql.connector as mysql
 import socket
 import sys
 import traceback
@@ -156,6 +157,7 @@ def playPokemonGo(connection):
                                 connection.send(size_bytes)
                             if connection.recv(1)[0] == 33:
                                 connection.send(bytes)
+                                guardaEnPokedex(setIdPokemon)
                             jugando = False
                 else:#ya no quiere jugar
                     jugando = False
@@ -188,6 +190,25 @@ def avisoTimeout(connection):
     :returns: Nada
     """
     connection.send(bytearray([40]))
+
+def guardaEnPokedex(idPokemon):
+    config = {
+        'user': 'doggos',
+        'password': 'doggos2020',
+        'host': 'localhost',
+        'database': 'TPC201-Pokemon',
+        'raise_on_warnings': True
+    }
+    cnx = mysql.connect(**config)
+    cursor = cnx.cursor()
+    #Falta saber el usuario que hizo login
+    #user_logged = "Alejandro"
+    #user_logged = "'%s'" % user
+    #user = cursor.fetchone()[0]
+    #cursor.execute("SELECT idUsuario FROM Usuario WHERE Nombre = %s"%(user))
+    #Usuario default -> Valde
+    cursor.execute("INSERT INTO Pokedex (Usuario, Pokemon) VALUES (5, %i)"%(idPokemon))
+    cnx.commit()
 
 if __name__ == "__main__":
    main()
