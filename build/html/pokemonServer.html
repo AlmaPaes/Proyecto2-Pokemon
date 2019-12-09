@@ -9,7 +9,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Cliente &mdash; documentación de Proyecto2-Pokemon - </title>
+  <title>pokemonServer module &mdash; documentación de Proyecto2-Pokemon - </title>
   
 
   
@@ -41,8 +41,7 @@
               href="genindex.html"/>
         <link rel="search" title="Búsqueda" href="search.html"/>
     <link rel="top" title="documentación de Proyecto2-Pokemon - " href="index.html"/>
-        <link rel="next" title="Servidor" href="server.html"/>
-        <link rel="prev" title="Pokemon Go!" href="index.html"/> 
+        <link rel="prev" title="pokemonClient module" href="pokemonClient.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -92,8 +91,8 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Cliente</a></li>
-<li class="toctree-l1"><a class="reference internal" href="server.html">Servidor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pokemonClient.html">pokemonClient module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">pokemonServer module</a></li>
 </ul>
 
             
@@ -138,13 +137,13 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Cliente</li>
+      <li>pokemonServer module</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/client.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/pokemonServer.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -154,10 +153,8 @@
   
   <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
       
-        <a href="server.html" class="btn btn-neutral float-right" title="Servidor" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-      
-        <a href="index.html" class="btn btn-neutral" title="Pokemon Go!" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="pokemonClient.html" class="btn btn-neutral" title="pokemonClient module" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
   </div>
   
@@ -166,56 +163,37 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="cliente">
-<h1>Cliente<a class="headerlink" href="#cliente" title="Enlazar permanentemente con este título">¶</a></h1>
-<p>Modela a un cliente del juego Pokemon Go! e interactúa directamente con el usuario</p>
-<span class="target" id="module-client"></span><dl class="function">
-<dt id="client.cerrarSesion">
-<code class="sig-prename descclassname">client.</code><code class="sig-name descname">cerrarSesion</code><span class="sig-paren">(</span><em class="sig-param">soc</em><span class="sig-paren">)</span><a class="headerlink" href="#client.cerrarSesion" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Cierre de sesión del usuario</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parámetros</dt>
-<dd class="field-odd"><p><strong>soc</strong> (<em>Socket</em>) – Socket de la conexión</p>
-</dd>
-<dt class="field-even">Devuelve</dt>
-<dd class="field-even"><p>Nada</p>
-</dd>
-</dl>
-</dd></dl>
+  <div class="section" id="module-pokemonServer">
+<span id="pokemonserver-module"></span><h1>pokemonServer module<a class="headerlink" href="#module-pokemonServer" title="Enlazar permanentemente con este título">¶</a></h1>
+<dl class="function">
+<dt id="pokemonServer.avisoTimeout">
+<code class="sig-prename descclassname">pokemonServer.</code><code class="sig-name descname">avisoTimeout</code><span class="sig-paren">(</span><em class="sig-param">connection</em><span class="sig-paren">)</span><a class="headerlink" href="#pokemonServer.avisoTimeout" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="function">
-<dt id="client.login">
-<code class="sig-prename descclassname">client.</code><code class="sig-name descname">login</code><span class="sig-paren">(</span><em class="sig-param">soc</em><span class="sig-paren">)</span><a class="headerlink" href="#client.login" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Transfiere los datos al servidor para validar el acceso, y cierra el programa si los datos no son válidos</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parámetros</dt>
-<dd class="field-odd"><p><strong>soc</strong> (<em>Socket</em>) – Socket de la conexión</p>
-</dd>
-<dt class="field-even">Devuelve</dt>
-<dd class="field-even"><p>Nada</p>
-</dd>
-</dl>
-</dd></dl>
+<dt id="pokemonServer.cerrarSesion">
+<code class="sig-prename descclassname">pokemonServer.</code><code class="sig-name descname">cerrarSesion</code><span class="sig-paren">(</span><em class="sig-param">connection</em><span class="sig-paren">)</span><a class="headerlink" href="#pokemonServer.cerrarSesion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="function">
-<dt id="client.main">
-<code class="sig-prename descclassname">client.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#client.main" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Función principal</p>
-</dd></dl>
+<dt id="pokemonServer.clientThread">
+<code class="sig-prename descclassname">pokemonServer.</code><code class="sig-name descname">clientThread</code><span class="sig-paren">(</span><em class="sig-param">connection</em>, <em class="sig-param">ip</em>, <em class="sig-param">port</em>, <em class="sig-param">max_buffer_size=5120</em><span class="sig-paren">)</span><a class="headerlink" href="#pokemonServer.clientThread" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="function">
-<dt id="client.playPokemon">
-<code class="sig-prename descclassname">client.</code><code class="sig-name descname">playPokemon</code><span class="sig-paren">(</span><em class="sig-param">soc</em><span class="sig-paren">)</span><a class="headerlink" href="#client.playPokemon" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Permite que el usuario juegue Pokemon Go</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parámetros</dt>
-<dd class="field-odd"><p><strong>soc</strong> (<em>Socket</em>) – Socket de la conexión</p>
-</dd>
-<dt class="field-even">Devuelve</dt>
-<dd class="field-even"><p>Nada</p>
-</dd>
-</dl>
-</dd></dl>
+<dt id="pokemonServer.main">
+<code class="sig-prename descclassname">pokemonServer.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pokemonServer.main" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="pokemonServer.playPokemonGo">
+<code class="sig-prename descclassname">pokemonServer.</code><code class="sig-name descname">playPokemonGo</code><span class="sig-paren">(</span><em class="sig-param">connection</em><span class="sig-paren">)</span><a class="headerlink" href="#pokemonServer.playPokemonGo" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="pokemonServer.start_server">
+<code class="sig-prename descclassname">pokemonServer.</code><code class="sig-name descname">start_server</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pokemonServer.start_server" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
 
 </div>
 
@@ -229,10 +207,8 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="server.html" class="btn btn-neutral float-right" title="Servidor" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-      
-        <a href="index.html" class="btn btn-neutral" title="Pokemon Go!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="pokemonClient.html" class="btn btn-neutral" title="pokemonClient module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

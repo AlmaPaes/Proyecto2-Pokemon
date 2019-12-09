@@ -1,5 +1,5 @@
 .. Proyecto2-Pokemon documentation master file, created by
-   sphinx-quickstart on Sun Dec  8 22:51:13 2019.
+   sphinx-quickstart on Mon Dec  9 01:13:05 2019.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
@@ -32,8 +32,8 @@ Programas involucrados
    :maxdepth: 2
    :caption: Contents:
    
-   client
-   server
+   pokemonClient
+   pokemonServer
    
 
 .. Indices and tables

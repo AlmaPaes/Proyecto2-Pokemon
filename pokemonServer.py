@@ -7,10 +7,18 @@ import threading
 import random
 
 def main():
-   start_server()
+    """ Función principal.
+    """
+   start_server(sys.argv[1])
    
-def start_server():
-   host = "127.0.0.1"
+def start_server(ip_dir):
+    """Inicialización del servidor
+    
+    :param ip_dir: Dirección IP del socket al cual se va aconectar el servidor
+    :type ip_dir: Cadena
+    :returns: Nada
+    """
+   host = ip_dir
    port = 9999 # arbitrary non-privileged port
    soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
    soc.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -37,8 +45,23 @@ def start_server():
    soc.close()
 
 def clientThread(connection, ip, port, max_buffer_size = 5120):
+    """Manejador del hilo que sostiene la conexión entre el servidor y un cliente
+    
+    :param connection: Conexión entre el servidor y el cliente que abrió el hilo
+    :type connection: Conexión
+    :param ip: Dirección IP de la conexión
+    :type ip: Cadena
+    :param port: Puerto a través del cual el servidor mantiene la conexión con el cliente
+    :type port: Entero
+    :param max_buffer_size: Número máximo de bytes que puede recibir en un paquete del cliente
+    :type max_buffer_size: Entero
+    :returns: Nada
+    """
    connection.settimeout(10)     #Establecemos timeout a cada hilo
    is_active = True
+   if giveAccess(connection) == 0:
+        is_active = False
+        
    while is_active:
       #client_input = receive_input(connection, max_buffer_size) 
       try:
@@ -56,8 +79,44 @@ def clientThread(connection, ip, port, max_buffer_size = 5120):
           cerrarSesion(connection)
           is_active = False       
    cerrarSesion(connection)
+   
+def giveAccess(connection,max_buffer_size = 5120):
+    """Autentifica a usuarios registrados y proporciona acceso a la ejecución de la aplicación
+    
+    :param connection: Conexión entre el servidor y el cliente que abrió el hilo
+    :type connection: Conexión
+    :param max_buffer_size: Número máximo de bytes que puede recibir en un paquete del cliente
+    :type max_buffer_size: Entero
+    :returns: int - Indicador de acceso permitido
+    """
+    user = connection.recv(max_buffer_size)
+    user = user.decode('UTF-8')
+
+    connection.send(bytearray([0]))
+    
+    psswd = connection.recv(max_buffer_size)
+    psswd = psswd.decode('UTF-8')
+    
+    s1 = 'Alma'
+    s2 = 'alma'
+    acceso = 0
+    
+    if s1 == user and s2 == psswd:
+        acceso = 1
+        
+    #resp = int.from_bytes(connection.recv(1),"big")
+    connection.send(bytearray([acceso]))
+    
+    return acceso
           
 def playPokemonGo(connection):
+    """
+    Método que simula el comportamiento del juego Pokemon Go
+    
+    :param connection: Conexión entre el servidor y el cliente
+    :type connection: Conexión
+    :returns: Nada
+    """
     try:
         setIdPokemon = random.randint(1,151)
         setPokemon = [20,setIdPokemon]
@@ -113,23 +172,22 @@ def playPokemonGo(connection):
         cerrarSesion(connection)
     
 def cerrarSesion(connection):
+    """Cierre de sesión entre el servidor y el cliente al cual le pertenece la conexión
+    
+    :param connection: Conexión entre el cliente y el servidor
+    :type connection: Conexión
+    :returns: Nada
+    """
     connection.close()
 
 def avisoTimeout(connection):
-    connection.send(bytearray([40]))
+    """Manda el mensaje de cierre de sesión al cliente por tiempo de espera excedido (timeout)
     
-'''         
-def receive_input(connection, max_buffer_size):
-   client_input = connection.recv(max_buffer_size)
-   client_input_size = sys.getsizeof(client_input)
-   if client_input_size > max_buffer_size:
-      print("The input size is greater than expected {}".format(client_input_size))
-   decoded_input = client_input.decode("utf8").rstrip()
-   result = process_input(decoded_input)
-   return result
-def process_input(input_str):
-   print("Processing the input received from client")
-   return "Hello " + str(input_str).upper()
-'''
+    :param connection: Conexión entre el cliente y el servidor
+    :type connection: Conexión
+    :returns: Nada
+    """
+    connection.send(bytearray([40]))
+
 if __name__ == "__main__":
    main()

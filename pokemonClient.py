@@ -12,7 +12,36 @@ CODIGO_NO = bytearray([31])
 CODIGO_LOGOUT = bytearray([32])
 CODIGO_ACK = bytearray([33])
 
+def login(soc):
+    """Transfiere los datos al servidor para validar el acceso, y cierra el programa si los datos no son válidos
+    
+    :param soc: Socket de la conexión
+    :type soc: Socket
+    :returns: Nada
+    """
+    print("Ingrese el nombre de usuario con el que está registrado")
+    user = input(" >> ")
+    
+    print("Ingrese la contraseña")
+    psswd = input(" >> ")
+    
+    soc.send(user.encode(encoding='UTF-8'))
+    soc.recv(1)
+    soc.send(psswd.encode(encoding='UTF-8'))
+    
+    access = soc.recv(1)
+    access = int.from_bytes(access,"big")
+    if access == 0:
+        print("Datos incorrectos")
+        sys.exit()
+
 def playPokemon(soc):
+     """Permite que el usuario juegue Pokemon Go
+    
+    :param soc: Socket de la conexión
+    :type soc: Socket
+    :returns: Nada
+    """
     try:
         soc.send(bytearray([10]))
         mensaje = soc.recv(2)
@@ -75,15 +104,33 @@ def playPokemon(soc):
         
 
 def cerrarSesion(soc):
+    """Cierre normal de sesión del usuario
+    
+    :param soc: Socket de la conexión
+    :type soc: Socket
+    :returns: Nada
+    """
     print("Terminando conexión...")
     soc.send(CODIGO_LOGOUT)
 
 def cerrarPorTimeout(soc):
+    """Cierre de sesión por tiempo de espera excedido
+    
+    :param soc: Socket de la conexión
+    :type soc: Socket
+    :returns: Nada
+    """
     print("Tiempo de respuesta excedido: 10 segundos")
     cerrarSesion(soc)
     sys.exit()
 
 def muestraPokemon(bytes):
+    """Despliega el pokemon asignado
+    
+    :param bytes: bytes de la imagen del pokemon a desplegar
+    :type soc: bytearray
+    :returns: Nada
+    """
     image = Image.open(io.BytesIO(bytes))
     data = np.array(image)
     plt.imshow(data)
@@ -91,15 +138,18 @@ def muestraPokemon(bytes):
     plt.show()
     
 def main():
+    """ Función principal
+    """
    soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-   host = "127.0.0.1"
-   port = 9999
+   host = sys.argv[1]
+   port = sys.argv[2]
    try:
       soc.connect((host, port))
       #soc.settimeout(10)
    except:
       print("Connection Error")
       sys.exit()
+   login(soc)
    opcion_correcta = False
    #try:
    while opcion_correcta == False:
@@ -118,12 +168,6 @@ def main():
 
    else:
         cerrarSesion(soc)
-            #print("hola")
-        #else:
-        #    soc.send(bytes([11]))
-          
-        #if soc.recv(5120).decode("utf8") == "-":
-        #    pass # null operation
         
 if __name__ == "__main__":
    main()
