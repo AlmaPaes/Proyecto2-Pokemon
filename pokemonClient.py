@@ -138,7 +138,7 @@ def main():
     """
     soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     host = sys.argv[1]
-    port = sys.argv[2]
+    port = int(sys.argv[2])
     try:
         soc.connect((host, port))
         #soc.settimeout(10)
