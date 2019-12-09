@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 import socket
 import sys
 
@@ -6,7 +7,36 @@ CODIGO_YES = bytearray([30])
 CODIGO_NO = bytearray([31])
 CODIGO_LOGOUT = bytearray([32])
 
+def login(soc):
+    """Transfiere los datos al servidor para validar el acceso, y cierra el programa si los datos no son válidos
+    
+    :param soc: Socket de la conexión
+    :type soc: Socket
+    :returns: Nada
+    """
+    print("Ingrese el nombre de usuario con el que está registrado")
+    user = input(" >> ")
+    
+    print("Ingrese la contraseña")
+    psswd = input(" >> ")
+    
+    soc.send(user.encode(encoding='UTF-8'))
+    soc.recv(1)
+    soc.send(psswd.encode(encoding='UTF-8'))
+    
+    access = soc.recv(1)
+    access = int.from_bytes(access,"big")
+    if access == 0:
+        print("Datos incorrectos")
+        sys.exit()
+
 def playPokemon(soc):
+    """Permite que el usuario juegue Pokemon Go
+    
+    :param soc: Socket de la conexión
+    :type soc: Socket
+    :returns: Nada
+    """
     try:
         soc.send(bytearray([10]))
         mensaje = soc.recv(2)
@@ -43,7 +73,7 @@ def playPokemon(soc):
                             soc.send(CODIGO_YES)
                         else:
                             jugando = False
-                            cerrarSesion(soc)
+                            #cerrarSesion(soc)
                     else:
                         if respuesta == 22:#capturaste al pokemon
                             print("Capturaste al pokemon")
@@ -51,56 +81,64 @@ def playPokemon(soc):
                         if respuesta == 23:#te quedaste sin intentos
                             print("Te quedaste sin intentos :(")
                             jugando = False
+                        #cerrarSesion(soc)
                         #if message == 'S':
                         #    soc.send(CODIGO_YES)
-                    cerrarSesion(soc)
                 except socket.timeout as timeout:
                     print("Tiempo de respuesta excedido: 10 segundos")
-                    sys.exit()
+                    #sys.exit()
+                    cerrarSesion(soc)
+            cerrarSesion(soc)
+        else:
+            #print("Gracias por jugar, hasta la próxima!")
+            cerrarSesion(soc)
+            #print(soc.fileno()) -> status.socket
     except socket.timeout as timeout:
         print("Tiempo de respuesta excedido: 10 segundos")
-        sys.exit()
+        #sys.exit()
+        cerrarSesion(soc)
     #else:
         
 
 def cerrarSesion(soc):
-    print("Terminando conexión")
+    """Cierre de sesión del usuario
+    
+    :param soc: Socket de la conexión
+    :type soc: Socket
+    :returns: Nada
+    """
+    print("Terminando conexión...")
     soc.send(CODIGO_LOGOUT)
     
+    
 def main():
-   soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-   host = "127.0.0.1"
-   port = 9999
-   try:
-      soc.connect((host, port))
-      soc.settimeout(10)
-   except:
-      print("Connection Error")
-      sys.exit()
-   opcion_correcta = False
-   while opcion_correcta == False:
-       print("Bienvenido a Pokemon Go! ¿Deseas capturar un Pokémon [P], revisar el catálogo? [C] o salir [S]?")
-       message = input(" >> ")
-       if message == 'S' or message == 'P' or message == 'C':
-           opcion_correcta = True
+    """ Función principal
+    """
+    soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    host = sys.argv[1]
+    port = sys.argv[2]
+    try:
+        soc.connect((host, port))
+        soc.settimeout(10)
+    except:
+        print("Connection Error")
+        sys.exit()
+    login(soc)
+    opcion_correcta = False
+    while opcion_correcta == False:
+        print("Bienvenido a Pokemon Go! ¿Deseas capturar un Pokémon [P], revisar el catálogo? [C] o salir [S]?")
+        message = input(" >> ")
+        if message == 'S' or message == 'P' or message == 'C':
+            opcion_correcta = True
 
-   if message != 'S':
-        if message == 'P':
-            playPokemon(soc)
-        else:
-            print("Mostrando catálogo")
+    if message != 'S':
+            if message == 'P':
+                playPokemon(soc)
+            else:
+                print("Mostrando catálogo")
 
-   else:
-        cerrarSesion(soc)
-            #print("hola")
-            soc.send(bytearray([10]))
-            msg_recived = soc.recv(2)
-            print("Codigo: %i | idPokemon: %i"%(msg_recived[0], msg_recived[1]))
-        #else:
-        #    soc.send(bytes([11]))
-          
-        #if soc.recv(5120).decode("utf8") == "-":
-        #    pass # null operation
+    else:
+            cerrarSesion(soc)
         
 if __name__ == "__main__":
    main()

@@ -1,0 +1,36 @@
+\begin{sphinxtheindex}
+\let\bigletter\sphinxstyleindexlettergroup
+\let\spxpagem \sphinxstyleindexpagemain
+\let\spxentry \sphinxstyleindexentry
+\let\spxextra \sphinxstyleindexextra
+
+  \bigletter C
+  \item \spxentry{cerrarSesion()}\spxextra{en el m\IeC {\'o}dulo client}, \hyperpage{2}
+  \item \spxentry{cerrarSesion()}\spxextra{en el m\IeC {\'o}dulo server}, \hyperpage{2}
+  \item \spxentry{client}\spxextra{m\IeC {\'o}dulo}, \hyperpage{2}
+  \item \spxentry{clientThread()}\spxextra{en el m\IeC {\'o}dulo server}, \hyperpage{3}
+
+  \indexspace
+  \bigletter G
+  \item \spxentry{giveAccess()}\spxextra{en el m\IeC {\'o}dulo server}, \hyperpage{3}
+
+  \indexspace
+  \bigletter L
+  \item \spxentry{login()}\spxextra{en el m\IeC {\'o}dulo client}, \hyperpage{2}
+
+  \indexspace
+  \bigletter M
+  \item \spxentry{main()}\spxextra{en el m\IeC {\'o}dulo client}, \hyperpage{2}
+  \item \spxentry{main()}\spxextra{en el m\IeC {\'o}dulo server}, \hyperpage{3}
+
+  \indexspace
+  \bigletter P
+  \item \spxentry{playPokemon()}\spxextra{en el m\IeC {\'o}dulo client}, \hyperpage{2}
+  \item \spxentry{playPokemonGo()}\spxextra{en el m\IeC {\'o}dulo server}, \hyperpage{3}
+
+  \indexspace
+  \bigletter S
+  \item \spxentry{server}\spxextra{m\IeC {\'o}dulo}, \hyperpage{2}
+  \item \spxentry{start\_server()}\spxextra{en el m\IeC {\'o}dulo server}, \hyperpage{3}
+
+\end{sphinxtheindex}

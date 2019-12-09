@@ -1,0 +1,7 @@
+\babel@toc {spanish}{}
+\contentsline {chapter}{\numberline {1}Programas involucrados}{2}{chapter.1}% 
+\contentsline {section}{\numberline {1.1}Cliente}{2}{section.1.1}% 
+\contentsline {section}{\numberline {1.2}Servidor}{2}{section.1.2}% 
+\contentsline {chapter}{\numberline {2}\IeC {\textquestiondown }C\IeC {\'o}mo usar?}{4}{chapter.2}% 
+\contentsline {chapter}{\IeC {\'I}ndice de M\IeC {\'o}dulos Python}{5}{section*.15}% 
+\contentsline {chapter}{\IeC {\'I}ndice}{6}{section*.16}% 
