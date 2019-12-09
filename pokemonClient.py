@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 from PIL import Image
 import io
 import numpy as np
+import pickle
 
 CODIGO_YES = bytearray([30])
 CODIGO_NO = bytearray([31])
@@ -45,6 +46,7 @@ def playPokemon(soc):
     try:
         soc.send(bytearray([10]))
         mensaje = soc.recv(2)
+        #print(mensaje[0])
         idPokemon = mensaje[1]
         print("¿Capturar al Pokemon " + str(idPokemon) + "?")
         print("Sí [S] o No [N]")
@@ -77,6 +79,7 @@ def playPokemon(soc):
                             jugando = False
                     else:
                         if respuesta == 22:#capturaste al pokemon
+                            print("Capturaste al pokemon...")
                             soc.send(CODIGO_ACK)
                             img_size = int.from_bytes(soc.recv(4),"big")
                             soc.send(CODIGO_ACK)
@@ -86,8 +89,6 @@ def playPokemon(soc):
                         if respuesta == 23:#te quedaste sin intentos
                             print("Te quedaste sin intentos :(")
                             jugando = False
-                        #if message == 'S':
-                        #    soc.send(CODIGO_YES)
                 except socket.timeout as timeout:
                     print("Tiempo de respuesta excedido: 10 segundos")
                     cerrarSesion(soc)
@@ -132,6 +133,21 @@ def muestraPokemon(bytes):
     plt.imshow(data)
     plt.axis('off')
     plt.show()
+
+def muestraPokedex(soc, usuario):
+    try:
+        soc.send(bytearray([11]))
+        respuesta = soc.recv(1)[0]
+        if respuesta == 24:
+            soc.send(CODIGO_ACK)
+            size = int.from_bytes(soc.recv(4),"big")
+            soc.send(CODIGO_ACK)
+            modelo = soc.recv(size)
+            pokedex = pickle.loads(modelo)
+            print(pokedex)
+    except socket.timeout as timeout:
+        cerrarPorTimeout(soc)
+    
     
 def main():
     """ Función principal
@@ -149,9 +165,9 @@ def main():
     opcion_correcta = False
     #try:
     while opcion_correcta == False:
-        print("Bienvenido a Pokemon Go! ¿Deseas capturar un Pokémon [P], revisar el catálogo? [C] o salir [S]?")
+        print("Bienvenido a Pokemon Go! ¿Deseas capturar un Pokémon [P], revisar el Pokedex [X], revisar el catálogo? [C] o salir [S]?")
         message = input(" >> ")
-        if message == 'S' or message == 'P' or message == 'C':
+        if message == 'S' or message == 'P' or message == 'C' or message == 'X' :
             opcion_correcta = True
     #except socket.timeout as timeout:
         #   cerrarPorTimeout(soc)
@@ -159,8 +175,11 @@ def main():
     if message != 'S':
             if message == 'P':
                 playPokemon(soc)
-            else:
-                print("Mostrando catálogo")
+            if message == 'X':
+                print("Mostrando Pokedex...")
+                muestraPokedex(soc, "usuario")
+            
+            #print("Mostrando catálogo")
 
     else:
             cerrarSesion(soc)
