@@ -169,7 +169,7 @@
 <span class="target" id="module-pokemonServer"></span><dl class="function">
 <dt id="pokemonServer.avisoTimeout">
 <code class="sig-prename descclassname">pokemonServer.</code><code class="sig-name descname">avisoTimeout</code><span class="sig-paren">(</span><em class="sig-param">connection</em><span class="sig-paren">)</span><a class="headerlink" href="#pokemonServer.avisoTimeout" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Manda el mensaje de cierre de sesión al cliente por tiempo de espera excedido (timeout)</p>
+<dd><p>Manda el mensaje de cierre de sesión al cliente por tiempo de espera excedido.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parámetros</dt>
 <dd class="field-odd"><p><strong>connection</strong> (<em>Conexión</em>) – Conexión entre el cliente y el servidor</p>
@@ -183,7 +183,7 @@
 <dl class="function">
 <dt id="pokemonServer.cerrarSesion">
 <code class="sig-prename descclassname">pokemonServer.</code><code class="sig-name descname">cerrarSesion</code><span class="sig-paren">(</span><em class="sig-param">connection</em><span class="sig-paren">)</span><a class="headerlink" href="#pokemonServer.cerrarSesion" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Cierre de sesión entre el servidor y el cliente al cual le pertenece la conexión</p>
+<dd><p>Cierre de sesión entre el servidor y el cliente al cual le pertenece la conexión.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parámetros</dt>
 <dd class="field-odd"><p><strong>connection</strong> (<em>Conexión</em>) – Conexión entre el cliente y el servidor</p>
@@ -202,13 +202,27 @@
 <dt class="field-odd">Parámetros</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>connection</strong> (<em>Conexión</em>) – Conexión entre el servidor y el cliente que abrió el hilo</p></li>
-<li><p><strong>ip</strong> (<em>Cadena</em>) – Dirección IP de la conexión</p></li>
-<li><p><strong>port</strong> (<em>Entero</em>) – Puerto a través del cual el servidor mantiene la conexión con el cliente</p></li>
-<li><p><strong>max_buffer_size</strong> (<em>Entero</em>) – Número máximo de bytes que puede recibir en un paquete del cliente</p></li>
+<li><p><strong>ip</strong> (<em>String</em>) – Dirección IP de la conexión</p></li>
+<li><p><strong>port</strong> (<em>Integer</em>) – Puerto a través del cual el servidor mantiene la conexión con el cliente</p></li>
+<li><p><strong>max_buffer_size</strong> (<em>Integer</em>) – Número máximo de bytes que puede recibir en un paquete del cliente</p></li>
 </ul>
 </dd>
 <dt class="field-even">Devuelve</dt>
 <dd class="field-even"><p>Nada</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pokemonServer.getNombrePokemon">
+<code class="sig-prename descclassname">pokemonServer.</code><code class="sig-name descname">getNombrePokemon</code><span class="sig-paren">(</span><em class="sig-param">idPokemon</em><span class="sig-paren">)</span><a class="headerlink" href="#pokemonServer.getNombrePokemon" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Regresa el nombre del pokemon dado su id.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>idPokemon</strong> (<em>Integer</em>) – Id del Pokemon a capturado</p>
+</dd>
+<dt class="field-even">Devuelve</dt>
+<dd class="field-even"><p>String</p>
 </dd>
 </dl>
 </dd></dl>
@@ -221,11 +235,31 @@
 <dt class="field-odd">Parámetros</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>connection</strong> (<em>Conexión</em>) – Conexión entre el servidor y el cliente que abrió el hilo</p></li>
-<li><p><strong>max_buffer_size</strong> (<em>Entero</em>) – Número máximo de bytes que puede recibir en un paquete del cliente</p></li>
+<li><p><strong>max_buffer_size</strong> (<em>Integer</em>) – Número máximo de bytes que puede recibir en un paquete del cliente</p></li>
 </ul>
 </dd>
 <dt class="field-even">Devuelve</dt>
-<dd class="field-even"><p>int - Indicador de acceso permitido</p>
+<dd class="field-even"><p>Integer, String -&gt; Valor que representa la correctud del accesso; Cadena que reprensenta al usuario activo.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pokemonServer.guardaEnPokedex">
+<code class="sig-prename descclassname">pokemonServer.</code><code class="sig-name descname">guardaEnPokedex</code><span class="sig-paren">(</span><em class="sig-param">idPokemon</em>, <em class="sig-param">user</em><span class="sig-paren">)</span><a class="headerlink" href="#pokemonServer.guardaEnPokedex" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><dl class="simple">
+<dt>Guarda el pokemon capturado en el pokedex del</dt><dd><p>usuario.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>idPokemon</strong> (<em>Integer</em>) – Id del Pokemon a capturado</p></li>
+<li><p><strong>user</strong> (<em>String</em>) – Usuario que capturo</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve</dt>
+<dd class="field-even"><p>Nada</p>
 </dd>
 </dl>
 </dd></dl>
@@ -237,9 +271,40 @@
 </dd></dl>
 
 <dl class="function">
+<dt id="pokemonServer.muestraCatalogo">
+<code class="sig-prename descclassname">pokemonServer.</code><code class="sig-name descname">muestraCatalogo</code><span class="sig-paren">(</span><em class="sig-param">connection</em><span class="sig-paren">)</span><a class="headerlink" href="#pokemonServer.muestraCatalogo" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Muestra el catalogo.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>connection</strong> (<em>Conexión</em>) – Conexión entre el servidor y el cliente</p>
+</dd>
+<dt class="field-even">Devuelve</dt>
+<dd class="field-even"><p>Nada</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pokemonServer.muestraPokedex">
+<code class="sig-prename descclassname">pokemonServer.</code><code class="sig-name descname">muestraPokedex</code><span class="sig-paren">(</span><em class="sig-param">connection</em>, <em class="sig-param">user</em><span class="sig-paren">)</span><a class="headerlink" href="#pokemonServer.muestraPokedex" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Muestra el Pokedex del usuario.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>connection</strong> (<em>Conexión</em>) – Conexión entre el servidor y el cliente</p></li>
+<li><p><strong>user</strong> (<em>String</em>) – Usuario que capturo</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve</dt>
+<dd class="field-even"><p>Nada</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
 <dt id="pokemonServer.playPokemonGo">
-<code class="sig-prename descclassname">pokemonServer.</code><code class="sig-name descname">playPokemonGo</code><span class="sig-paren">(</span><em class="sig-param">connection</em><span class="sig-paren">)</span><a class="headerlink" href="#pokemonServer.playPokemonGo" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Método que simula el comportamiento del juego Pokemon Go</p>
+<code class="sig-prename descclassname">pokemonServer.</code><code class="sig-name descname">playPokemonGo</code><span class="sig-paren">(</span><em class="sig-param">connection</em>, <em class="sig-param">user</em><span class="sig-paren">)</span><a class="headerlink" href="#pokemonServer.playPokemonGo" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Método que simula el comportamiento del juego Pokemon Go.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parámetros</dt>
 <dd class="field-odd"><p><strong>connection</strong> (<em>Conexión</em>) – Conexión entre el servidor y el cliente</p>
@@ -252,11 +317,28 @@
 
 <dl class="function">
 <dt id="pokemonServer.start_server">
-<code class="sig-prename descclassname">pokemonServer.</code><code class="sig-name descname">start_server</code><span class="sig-paren">(</span><em class="sig-param">ip_dir</em><span class="sig-paren">)</span><a class="headerlink" href="#pokemonServer.start_server" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="sig-prename descclassname">pokemonServer.</code><code class="sig-name descname">start_server</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pokemonServer.start_server" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Inicialización del servidor</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parámetros</dt>
-<dd class="field-odd"><p><strong>ip_dir</strong> (<em>Cadena</em>) – Dirección IP del socket al cual se va aconectar el servidor</p>
+<dd class="field-odd"><p><strong>ip_dir</strong> (<em>String</em>) – Dirección IP del socket al cual se va conectar el servidor</p>
+</dd>
+<dt class="field-even">Devuelve</dt>
+<dd class="field-even"><p>Nada</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pokemonServer.terminarConexion">
+<code class="sig-prename descclassname">pokemonServer.</code><code class="sig-name descname">terminarConexion</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pokemonServer.terminarConexion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><dl class="simple">
+<dt>Termina la conexion pues el Cliente notifica que el tiempo</dt><dd><p>de espera ha excedido.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Param</dt>
+<dd class="field-odd"><p>Nada</p>
 </dd>
 <dt class="field-even">Devuelve</dt>
 <dd class="field-even"><p>Nada</p>

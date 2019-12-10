@@ -170,9 +170,9 @@
 <h1>Cliente Pokemon Go!<a class="headerlink" href="#cliente-pokemon-go" title="Enlazar permanentemente con este título">¶</a></h1>
 <p>Implementación de un cliente para el juego Pokemon Go! e interactúa directamente con el usuario</p>
 <span class="target" id="module-pokemonClient"></span><dl class="function">
-<dt id="pokemonClient.cerrarPorTimeout">
-<code class="sig-prename descclassname">pokemonClient.</code><code class="sig-name descname">cerrarPorTimeout</code><span class="sig-paren">(</span><em class="sig-param">soc</em><span class="sig-paren">)</span><a class="headerlink" href="#pokemonClient.cerrarPorTimeout" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Cierre de sesión por tiempo de espera excedido</p>
+<dt id="pokemonClient.cerrarSesion">
+<code class="sig-prename descclassname">pokemonClient.</code><code class="sig-name descname">cerrarSesion</code><span class="sig-paren">(</span><em class="sig-param">soc</em><span class="sig-paren">)</span><a class="headerlink" href="#pokemonClient.cerrarSesion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Cierre normal de sesión del usuario.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parámetros</dt>
 <dd class="field-odd"><p><strong>soc</strong> (<em>Socket</em>) – Socket de la conexión</p>
@@ -184,12 +184,32 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="pokemonClient.cerrarSesion">
-<code class="sig-prename descclassname">pokemonClient.</code><code class="sig-name descname">cerrarSesion</code><span class="sig-paren">(</span><em class="sig-param">soc</em><span class="sig-paren">)</span><a class="headerlink" href="#pokemonClient.cerrarSesion" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Cierre normal de sesión del usuario</p>
+<dt id="pokemonClient.displayCatalogo">
+<code class="sig-prename descclassname">pokemonClient.</code><code class="sig-name descname">displayCatalogo</code><span class="sig-paren">(</span><em class="sig-param">catalogo</em><span class="sig-paren">)</span><a class="headerlink" href="#pokemonClient.displayCatalogo" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><dl class="simple">
+<dt>Imprime en pantalla el catálogo de Pokemones</dt><dd><p>disponibles de manera «amigable».</p>
+</dd>
+</dl>
 <dl class="field-list simple">
 <dt class="field-odd">Parámetros</dt>
-<dd class="field-odd"><p><strong>soc</strong> (<em>Socket</em>) – Socket de la conexión</p>
+<dd class="field-odd"><p><strong>catalogo</strong> (<em>List of String</em>) – Catalogo de Pokemones</p>
+</dd>
+<dt class="field-even">Devuelve</dt>
+<dd class="field-even"><p>Nada</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pokemonClient.displayPokedex">
+<code class="sig-prename descclassname">pokemonClient.</code><code class="sig-name descname">displayPokedex</code><span class="sig-paren">(</span><em class="sig-param">pokedex</em><span class="sig-paren">)</span><a class="headerlink" href="#pokemonClient.displayPokedex" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><dl class="simple">
+<dt>Imprime en pantalla el Pokedex de manera</dt><dd><p>«amigable».</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>pokedex</strong> (<em>List of String</em>) – Pokedex de Pokemones</p>
 </dd>
 <dt class="field-even">Devuelve</dt>
 <dd class="field-even"><p>Nada</p>
@@ -200,7 +220,7 @@
 <dl class="function">
 <dt id="pokemonClient.login">
 <code class="sig-prename descclassname">pokemonClient.</code><code class="sig-name descname">login</code><span class="sig-paren">(</span><em class="sig-param">soc</em><span class="sig-paren">)</span><a class="headerlink" href="#pokemonClient.login" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Transfiere los datos al servidor para validar el acceso, y cierra el programa si los datos no son válidos</p>
+<dd><p>Transfiere los datos al servidor para validar el acceso, y cierra el programa si los datos no son válidos.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parámetros</dt>
 <dd class="field-odd"><p><strong>soc</strong> (<em>Socket</em>) – Socket de la conexión</p>
@@ -218,12 +238,46 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="pokemonClient.muestraPokemon">
-<code class="sig-prename descclassname">pokemonClient.</code><code class="sig-name descname">muestraPokemon</code><span class="sig-paren">(</span><em class="sig-param">bytes</em><span class="sig-paren">)</span><a class="headerlink" href="#pokemonClient.muestraPokemon" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Despliega el pokemon asignado</p>
+<dt id="pokemonClient.muestraCatalogo">
+<code class="sig-prename descclassname">pokemonClient.</code><code class="sig-name descname">muestraCatalogo</code><span class="sig-paren">(</span><em class="sig-param">soc</em><span class="sig-paren">)</span><a class="headerlink" href="#pokemonClient.muestraCatalogo" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><dl class="simple">
+<dt>Le muestra el catálogo disponible de Pokemones</dt><dd><p>al usuario.</p>
+</dd>
+</dl>
 <dl class="field-list simple">
 <dt class="field-odd">Parámetros</dt>
-<dd class="field-odd"><p><strong>bytes</strong> – bytes de la imagen del pokemon a desplegar</p>
+<dd class="field-odd"><p><strong>soc</strong> (<em>Socket</em>) – Socket de la  conexión</p>
+</dd>
+<dt class="field-even">Devuelve</dt>
+<dd class="field-even"><p>Nada</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pokemonClient.muestraPokedex">
+<code class="sig-prename descclassname">pokemonClient.</code><code class="sig-name descname">muestraPokedex</code><span class="sig-paren">(</span><em class="sig-param">soc</em><span class="sig-paren">)</span><a class="headerlink" href="#pokemonClient.muestraPokedex" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><dl class="simple">
+<dt>Muestra el Pokedex del usuario que solicita esta acción</dt><dd><p>al usuario.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>soc</strong> (<em>Socket</em>) – Socket de la conexión</p>
+</dd>
+<dt class="field-even">Devuelve</dt>
+<dd class="field-even"><p>Nada</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pokemonClient.muestraPokemon">
+<code class="sig-prename descclassname">pokemonClient.</code><code class="sig-name descname">muestraPokemon</code><span class="sig-paren">(</span><em class="sig-param">bytes</em><span class="sig-paren">)</span><a class="headerlink" href="#pokemonClient.muestraPokemon" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Despliega el pokemon asignado.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>bytes</strong> (<em>bytearray</em>) – bytes de la imagen del pokemon a desplegar</p>
 </dd>
 <dt class="field-even">Devuelve</dt>
 <dd class="field-even"><p>Nada</p>
@@ -234,10 +288,51 @@
 <dl class="function">
 <dt id="pokemonClient.playPokemon">
 <code class="sig-prename descclassname">pokemonClient.</code><code class="sig-name descname">playPokemon</code><span class="sig-paren">(</span><em class="sig-param">soc</em><span class="sig-paren">)</span><a class="headerlink" href="#pokemonClient.playPokemon" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Permite que el usuario juegue Pokemon Go</p>
+<dd><p>Permite que el usuario juegue Pokemon Go.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parámetros</dt>
 <dd class="field-odd"><p><strong>soc</strong> (<em>Socket</em>) – Socket de la conexión</p>
+</dd>
+<dt class="field-even">Devuelve</dt>
+<dd class="field-even"><p>Nada</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pokemonClient.printPokemon">
+<code class="sig-prename descclassname">pokemonClient.</code><code class="sig-name descname">printPokemon</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pokemonClient.printPokemon" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Imprime en pantalla el logo Pokemon
+:returns: Nada</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pokemonClient.terminarConTimeout">
+<code class="sig-prename descclassname">pokemonClient.</code><code class="sig-name descname">terminarConTimeout</code><span class="sig-paren">(</span><em class="sig-param">soc</em><span class="sig-paren">)</span><a class="headerlink" href="#pokemonClient.terminarConTimeout" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><dl class="simple">
+<dt>Termina la conexión pues el tiempo de espera de la</dt><dd><p>respuesta del Servidor ha excedido.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>soc</strong> (<em>Socket</em>) – Socket de la conexión</p>
+</dd>
+<dt class="field-even">Devuelve</dt>
+<dd class="field-even"><p>Nada</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pokemonClient.terminarConexion">
+<code class="sig-prename descclassname">pokemonClient.</code><code class="sig-name descname">terminarConexion</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pokemonClient.terminarConexion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><dl class="simple">
+<dt>Termina la conexion pues el Servidor notifica que</dt><dd><p>el tiempo de espera ha excedido.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Param</dt>
+<dd class="field-odd"><p>Nada</p>
 </dd>
 <dt class="field-even">Devuelve</dt>
 <dd class="field-even"><p>Nada</p>

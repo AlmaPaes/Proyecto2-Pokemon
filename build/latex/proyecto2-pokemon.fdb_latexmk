@@ -1,10 +1,10 @@
 # Fdb version 3
-["makeindex proyecto2-pokemon.idx"] 1575877675 "proyecto2-pokemon.idx" "proyecto2-pokemon.ind" "proyecto2-pokemon" 1575877679
-  "proyecto2-pokemon.idx" 1575877679 2145 968ce051518275ec8645c510b77558bb "pdflatex"
+["makeindex proyecto2-pokemon.idx"] 1575955189 "proyecto2-pokemon.idx" "proyecto2-pokemon.ind" "proyecto2-pokemon" 1575955191
+  "proyecto2-pokemon.idx" 1575955190 3870 a43a2c1480f2e135f05eed393280bced "pdflatex"
   (generated)
-  "proyecto2-pokemon.ind"
   "proyecto2-pokemon.ilg"
-["pdflatex"] 1575877678 "proyecto2-pokemon.tex" "proyecto2-pokemon.pdf" "proyecto2-pokemon" 1575877679
+  "proyecto2-pokemon.ind"
+["pdflatex"] 1575955189 "proyecto2-pokemon.tex" "proyecto2-pokemon.pdf" "proyecto2-pokemon" 1575955191
   "/home/alma/.texlive/texmf-var/web2c/pdftex/pdflatex.fmt" 1572830385 7979416 6a7fcff483d211e2d4600877087cca8c ""
   "/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc" 1557554374 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1557554374 3332 103109f5612ad95229751940c61aada0 ""
@@ -148,20 +148,20 @@
   "/usr/share/texmf-dist/web2c/texmf.cnf" 1557554374 33301 a3134070eacafb10b1f371612ce2650d ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1572649060 3106380 436fef8c2e0ca660ce1dd89198cfa583 ""
   "footnotehyper-sphinx.sty" 1575756008 8888 1bbd7bdeae8c8bed1d10d551bddb1cc9 ""
-  "proyecto2-pokemon.aux" 1575877679 3612 ca043aa44d013554786aa58822a24a67 "pdflatex"
-  "proyecto2-pokemon.ind" 1575877676 1763 bc9ca5d6d0c17ed17b44284ebe6d6d48 "makeindex proyecto2-pokemon.idx"
-  "proyecto2-pokemon.out" 1575877679 836 7a1e456aaf76ed1a9c3e4bd8460a9fa8 "pdflatex"
-  "proyecto2-pokemon.tex" 1575877673 14737 be5b5987eb0781ca7cef8b576c9a6dd2 ""
-  "proyecto2-pokemon.toc" 1575877679 509 b663e8293118c54d599e937cf08d8d6e "pdflatex"
+  "proyecto2-pokemon.aux" 1575955190 4727 3949724886fd67a6ae1ef98468fb4f52 "pdflatex"
+  "proyecto2-pokemon.ind" 1575955189 2903 0ba8ea17a6acbbae3402a0333bb94adf "makeindex proyecto2-pokemon.idx"
+  "proyecto2-pokemon.out" 1575955190 836 0593e52eac94a0d484f166db18bab02d "pdflatex"
+  "proyecto2-pokemon.tex" 1575955186 23245 c2b5f8a0d33a0a4dab5e73b3f5d9641e ""
+  "proyecto2-pokemon.toc" 1575955190 509 2a51a56ce34d6a2d0f7b84fe1f3d6b88 "pdflatex"
   "sphinx.sty" 1575756008 77684 8fb97306ac83d50d8517c97072345a1d ""
-  "sphinxhighlight.sty" 1575877672 8137 38a433148fcb7611515a989ff1750dd5 ""
+  "sphinxhighlight.sty" 1575955185 8137 38a433148fcb7611515a989ff1750dd5 ""
   "sphinxmanual.cls" 1575756008 3764 e7c0a8da02dc45450256dd4cfdafb426 ""
-  "sphinxmessages.sty" 1575877673 744 5f4a41cf5cda9087e7ed774db21285fc ""
+  "sphinxmessages.sty" 1575955186 744 5f4a41cf5cda9087e7ed774db21285fc ""
   "sphinxmulticell.sty" 1575756008 14606 0b6edc2b1a83546ed92026d1f6a311b5 ""
   (generated)
+  "proyecto2-pokemon.idx"
   "proyecto2-pokemon.out"
-  "proyecto2-pokemon.toc"
   "proyecto2-pokemon.aux"
   "proyecto2-pokemon.log"
   "proyecto2-pokemon.pdf"
-  "proyecto2-pokemon.idx"
+  "proyecto2-pokemon.toc"

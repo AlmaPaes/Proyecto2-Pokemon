@@ -17,6 +17,9 @@ CODIGO_LOGOUT = bytearray([32])
 CODIGO_ACK = bytearray([33])
 
 def printPokemon():
+    """Imprime en pantalla el logo Pokemon
+        :returns: Nada
+    """
     print("              _                              ")
     print("  _ __   ___ | | _____ _ __ ___   ___  _ __  ")
     print(" | '_ \ / _ \| |/ / _ \ '_ ` _ \ / _ \| '_ \ ")

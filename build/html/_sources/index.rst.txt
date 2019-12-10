@@ -15,19 +15,21 @@ Pokemon Go!
 
 * Para el servidor
 
-    - Pasos previos para instalar la base de datos. Revisar archivo.
+    - Si es la primera vez usando el servidor del juego, por favor dirigirse a la carpeta *./Instalaciones* y ejecutar *./make_servidor*
     
-    - En una terminal, nos situamos en la ubicación del archivo *pokemonServer.py*
+    - En caso contrario: en una terminal, nos situamos en la ubicación del archivo *pokemonServer.py*
     
-    - Para que se pueda establecer la comunicación satisfactoriamente, necesitamos ingresar la dirección IP al momento de iniciar el servidor. Por lo tanto, ejecutamos *./pokemonServer.py <IP>*
+    - No necesitamos parámetros extra para ejecutar el servidor. *./pokemonServer.py*
     
 * Para el cliente
+
+    - Si es la primera vez usando un cliente del juego, por favor dirigirse a la carpeta *./Instalaciones* y ejecutar *./make_cliente*
 
     - En una terminal, nos situamos en la ubicación del archivo *pokemonClient.py*
     
     - Este programa recibe como parámetros iniciales la dirección IP a través de la cual se quiere conectar, y el puerto. Por lo tanto, ejecutamos de la siguiente manera: *./pokemonClient.py <IP> <port>*
     
-.. note :: La dirección IP ingresada al ejecutar el cliente y el servidor debe ser la misma
+.. note :: El puerto ingresado al ejecutar el cliente debe ser el mismo que usa el servidor
 
 Programas involucrados
 ========================
@@ -39,10 +41,3 @@ Programas involucrados
    pokemonClient
    pokemonServer
    
-
-.. Indices and tables
-.. ==================
-
-.. * :ref:`genindex`
-.. * :ref:`modindex`
-.. * :ref:`search`
