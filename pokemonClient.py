@@ -73,7 +73,7 @@ def playPokemon(soc):
                 respuesta = mensaje[0]
                 
                 if respuesta == 21: #aun tienes intentos
-                    print("¿Intentar captura de nuevo? Quedan " + str(mensaje[2]) + " intentos")
+                    print("¿Intentar captura de nuevo? Quedan " + str(mensaje[2]+1) + " intentos")
                     print("Sí [S] o No [N]")
                     message = input(" >> ")
                     mensaje_correcto = False
@@ -82,7 +82,7 @@ def playPokemon(soc):
                             mensaje_correcto = True
                         else:
                             print("Opción inválida >:(")
-                            print("¿Intentar captura de nuevo? Quedan " + str(mensaje[2]) + " intentos")
+                            print("¿Intentar captura de nuevo? Quedan " + str(mensaje[2]+1) + " intentos")
                             print("Sí [S] o No [N]")
                             message = input(" >> ")
                     if message == 'S':
