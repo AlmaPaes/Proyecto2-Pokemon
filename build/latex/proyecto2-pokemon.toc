@@ -1,7 +1,0 @@
-\babel@toc {spanish}{}
-\contentsline {chapter}{\numberline {1}\IeC {\textquestiondown }C\IeC {\'o}mo usar?}{2}{chapter.1}% 
-\contentsline {chapter}{\numberline {2}Programas involucrados}{3}{chapter.2}% 
-\contentsline {section}{\numberline {2.1}Cliente Pokemon Go!}{3}{section.2.1}% 
-\contentsline {section}{\numberline {2.2}Servidor Pokemon Go!}{4}{section.2.2}% 
-\contentsline {chapter}{\IeC {\'I}ndice de M\IeC {\'o}dulos Python}{7}{section*.29}% 
-\contentsline {chapter}{\IeC {\'I}ndice}{8}{section*.30}% 
