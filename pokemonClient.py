@@ -31,20 +31,23 @@ def login(soc):
     :type soc: Socket
     :returns: Nada
     """
-    print("Ingrese el nombre de usuario con el que está registrado")
-    user = input(" >> ")
-    
-    print("Ingrese la contraseña")
-    psswd = getpass.getpass(" >> ")
-    
-    soc.send(user.encode(encoding='UTF-8'))
-    soc.recv(1)
-    soc.send(psswd.encode(encoding='UTF-8'))
-    access = soc.recv(1)
-    access = int.from_bytes(access,"big")
-    if access == 51:
-        print("Datos incorrectos")
-        sys.exit()
+    try:
+        print("Ingrese el nombre de usuario con el que está registrado")
+        user = input(" >> ")
+        
+        print("Ingrese la contraseña")
+        psswd = getpass.getpass(" >> ")
+        
+        soc.send(user.encode(encoding='UTF-8'))
+        soc.recv(1)
+        soc.send(psswd.encode(encoding='UTF-8'))
+        access = soc.recv(1)
+        access = int.from_bytes(access,"big")
+        if access == 51:
+            print("Datos incorrectos")
+            sys.exit(1)
+    except BrokenPipeError:
+        terminarConexion()
 
 def playPokemon(soc):
     """Permite que el usuario juegue Pokemon Go.

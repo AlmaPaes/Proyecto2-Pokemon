@@ -70,7 +70,10 @@ def clientThread(connection, ip, port, max_buffer_size = 5120):
     """
     connection.settimeout(15)     #Establecemos timeout a cada hilo
     is_active = True
-    acceso, user = giveAccess(connection)
+    try:
+        acceso, user = giveAccess(connection)
+    except:
+        terminarConexion()
     if acceso == 51:
         is_active = False
             
@@ -118,31 +121,33 @@ def giveAccess(connection,max_buffer_size = 5120):
     
         psswd = connection.recv(max_buffer_size)
         psswd = psswd.decode('UTF-8')
+
+        cnx = mysql.connect(**CONFIG)
+        cursor = cnx.cursor()
+        
+        correctPsswd = ""
+        query = "SELECT Nombre,Pwd FROM Usuario WHERE Nombre = '" + user + "'"
+        cursor.execute(query)
+        todo = cursor.fetchone()
+        if todo is not None:
+            nombre = todo[0]
+            correctPsswd = todo[1]
+            
+        acceso = ACCESO_DENEGADO
+        if correctPsswd == psswd:
+            acceso = ACCESO_PERMITIDO
+
+        connection.send(bytearray([acceso]))
+        return acceso, nombre
+
     except socket.timeout :
         print("Tiempo de respuesta excedido: 10 segundos")
         avisoTimeout(connection)
         cerrarSesion(connection)
     except IndexError:
         terminarConexion()
-    
-    cnx = mysql.connect(**CONFIG)
-    cursor = cnx.cursor()
-    
-    correctPsswd = ""
-    query = "SELECT Nombre,Pwd FROM Usuario WHERE Nombre = '" + user + "'"
-    cursor.execute(query)
-    todo = cursor.fetchone()
-    if todo is not None:
-        nombre = todo[0]
-        correctPsswd = todo[1]
-        
-    acceso = ACCESO_DENEGADO
-    if correctPsswd == psswd:
-        acceso = ACCESO_PERMITIDO
-
-    connection.send(bytearray([acceso]))
-    
-    return acceso, nombre
+    except UnboundLocalError:
+        terminarConexion()
           
 def playPokemonGo(connection, user):
     """Método que simula el comportamiento del juego Pokemon Go.
