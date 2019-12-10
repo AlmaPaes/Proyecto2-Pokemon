@@ -22,7 +22,7 @@ PORT = 9999
 def main():
     """ Función principal.
     """
-    start_server(sys.argv[1])
+    start_server()
    
 def start_server():
     """Inicialización del servidor
