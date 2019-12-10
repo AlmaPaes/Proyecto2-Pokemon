@@ -89,9 +89,9 @@ def playPokemon(soc):
     try:
         soc.send(bytearray([10]))
         mensaje = soc.recv(2)
-        #print(mensaje[0])
         idPokemon = mensaje[1]
-        print("¿Capturar al Pokemon " + str(idPokemon) + "?")
+        nombrePokemon = soc.recv(50).decode("utf-8")
+        print("¿Capturar al Pokemon " + nombrePokemon + "?")
         print("Sí [S] o No [N]")
         message = input(" >> ")
         
@@ -280,7 +280,7 @@ def main():
         print("Connection Error")
         sys.exit()
     login(soc)
-    printCharizard()
+    #printCharizard()
     opcion_correcta = False
     try:
         while opcion_correcta == False:

@@ -156,10 +156,12 @@ def playPokemonGo(connection, user):
         setIdPokemon = random.randint(1,151)
         setPokemon = [20,setIdPokemon]
         connection.send(bytearray(setPokemon))
-        intentos = random.randint(1,6)
+        nombrePokemon = getNombrePokemon(setIdPokemon)
+        connection.send(nombrePokemon.encode("utf-8"))
+        intentos = random.randint(1,5)
         print("Jugando!")
         print("Número de intentos: " + str(intentos))
-        intento_acertado = random.randint(1,intentos)
+        intento_acertado = random.randint(0,intentos)
         intentos_disponibles = intentos
         intento_actual = 1
         jugando = True
@@ -171,6 +173,7 @@ def playPokemonGo(connection, user):
                 if respuesta == 30:
                     if intentos_disponibles == 0: #ya no hay intentos disponibles
                         connection.send(bytearray([23]))
+                        cerrarSesion(connection)
                         jugando = False
                     else:
                         if intento_actual != intento_acertado: #no ha capturado el pokemon
@@ -193,7 +196,7 @@ def playPokemonGo(connection, user):
                                 connection.send(bytes)
                                 guardaEnPokedex(setIdPokemon, user)
                             jugando = False
-                else:#ya no quiere jugar
+                else: #ya no quiere jugar
                     jugando = False
             except socket.timeout :
                 print("Tiempo de respuesta excedido: 10 segundos")
@@ -209,6 +212,19 @@ def playPokemonGo(connection, user):
     except IndexError:
         terminarConexion()
     
+def getNombrePokemon(idPokemon):
+    """Regresa el nombre del pokemon dado su id
+    
+    :param idPokemon: Id del Pokemon a capturado
+    :type idPokemon: Integer
+    :returns: String
+    """
+    cnx = mysql.connect(**CONFIG)
+    cursor = cnx.cursor()
+    cursor.execute("SELECT Nombre FROM Pokemon WHERE idPokemon = %i"%(idPokemon))
+    nombrePokemon = cursor.fetchone()[0]
+    return nombrePokemon
+
 def cerrarSesion(connection):
     """Cierre de sesión entre el servidor y el cliente al cual le pertenece la conexión
     
