@@ -256,7 +256,7 @@ def avisoTimeout(connection):
     :type connection: Conexión
     :returns: Nada
     """
-    connection.send(bytearray([40]))
+    connection.send(bytearray([41]))
 
 def guardaEnPokedex(idPokemon, user):
     """Guarda el pokemon capturado en el pokedex del
