@@ -9,7 +9,8 @@
    - 21: ¿Intentar captura de nuevo? Quedan k intentos.
    - 22: Envía Pokemon (imagen) capturado.
    - 23: Número de intentos de captura agotados.
-   - 24: Envía pokedex y catálogo.
+   - 24: Envía pokedex
+   - 25: Envia catálogo
 3. Códigos en común (30):
    - 30: Sí
    - 31: No
