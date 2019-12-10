@@ -16,6 +16,47 @@ CODIGO_NO = bytearray([31])
 CODIGO_LOGOUT = bytearray([32])
 CODIGO_ACK = bytearray([33])
 
+def printCharizard():
+    print("                 .\"-,.__\n")
+    print("                 `.     `.  ,\n")
+    print("              .--'  .._,'\"-' `.\n")
+    print("             .    .'         `'\n")
+    print("             `.   /          ,'\n")
+    print("               `  '--.   ,-\"'\n")
+    print("                `\"`   |  \\\n")
+    print("                   -. \\, |\n")
+    print("                    `--Y.'      ___.\n")
+    print("                         \\     L._, \\\n")
+    print("               _.,        `.   <  <\\                _\n")
+    print("             ,' '           `, `.   | \\            ( `\n")
+    print("          ../, `.            `  |    .\\`.           \\ \\_\n")
+    print("         ,' ,..  .           _.,'    ||\\l            )  '\".\n")
+    print("        , ,'   \\           ,'.-.`-._,'  |           .  _._`.\n")
+    print("      ,' /      \\ \\        `' ' `--/   | \\          / /   ..\\\n")
+    print("    .'  /        \\ .         |\\__ - _ ,'` `        / /     `.`.\n")
+    print("    |  '          ..         `-...-\"  |  `-'      / /        . `.\n")
+    print("    | /           |L__           |    |          / /          `. `.\n")
+    print("   , /            .   .          |    |         / /             ` `\n")
+    print("  / /          ,. ,`._ `-_       |    |  _   ,-' /               ` \\\n")
+    print(" / .           \\\"`_/. `-_ \\_,.  ,'    +-' `-'  _,        ..,-.    \\`.\n")
+    print(".  '         .-f    ,'   `    '.       \\__.---'     _   .'   '     \\ \\\n")
+    print("' /          `.'    l     .' /          \\..      ,_|/   `.  ,'`     L`\n")
+    print("|'      _.-\"\"` `.    \\ _,'  `            \\ `.___`.'\"`-.  , |   |    | \\\n")
+    print("||    ,'      `. `.   '       _,...._        `  |    `/ '  |   '     .|\n")
+    print("||  ,'          `. .,.---' ,'       `.   `.. `-'  .-' /_ .'    _   ||\n")
+    print("|| '              V      / /           `   | `   ,'   ,' '.    !  `. ||\n")
+    print("||/            _,-------7 '              . |  `-'    l         /    `||\n")
+    print(". |          ,' .-   ,' ||               | .-.        `.      .'     ||\n")
+    print(" `'        ,'    `\".'    |               |    `.        '. -.'       `'\n")
+    print("          /      ,'      |               |,'    \\-.._,.'/'\n")
+    print("          .     /        .               .       \\    .''\n")
+    print("        .`.    |         `.             /         :_,'.'\n")
+    print("          \\ `...\\   _     ,'-.        .'         /_.-'\n")
+    print("           `-.__ `,  `'   .  _.>----''.  _  __  /\n")
+    print("                .'        /\"'          |  \"'   '_\n")
+    print("               /_|.-'\\ ,\".             '.'`__'-( \\\n")
+    print("                 / ,\"'\"\\,'               `/  `-.|\" mh\n")
+
 def login(soc):
     """Transfiere los datos al servidor para validar el acceso, y cierra el programa si los datos no son válidos
     
@@ -34,8 +75,7 @@ def login(soc):
     soc.send(psswd.encode(encoding='UTF-8'))
     access = soc.recv(1)
     access = int.from_bytes(access,"big")
-
-    if access == 0:
+    if access == 51:
         print("Datos incorrectos")
         sys.exit()
 
@@ -240,6 +280,7 @@ def main():
         print("Connection Error")
         sys.exit()
     login(soc)
+    printCharizard()
     opcion_correcta = False
     try:
         while opcion_correcta == False:
