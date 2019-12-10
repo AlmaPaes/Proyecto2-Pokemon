@@ -40,7 +40,6 @@ def login(soc):
     soc.send(user.encode(encoding='UTF-8'))
     soc.recv(1)
     soc.send(psswd.encode(encoding='UTF-8'))
-    
     access = soc.recv(1)
     access = int.from_bytes(access,"big")
     if access == 51:
@@ -48,7 +47,7 @@ def login(soc):
         sys.exit()
 
 def playPokemon(soc):
-    """Permite que el usuario juegue Pokemon Go
+    """Permite que el usuario juegue Pokemon Go.
 
     :param soc: Socket de la conexión
     :type soc: Socket
@@ -57,9 +56,9 @@ def playPokemon(soc):
     try:
         soc.send(bytearray([10]))
         mensaje = soc.recv(2)
-        #print(mensaje[0])
         idPokemon = mensaje[1]
-        print("¿Capturar al Pokemon " + str(idPokemon) + "?")
+        nombrePokemon = soc.recv(50).decode("utf-8")
+        print("¿Capturar al Pokemon " + nombrePokemon + "?")
         print("Sí [S] o No [N]")
         message = input(" >> ")
         
@@ -102,18 +101,16 @@ def playPokemon(soc):
             cerrarSesion(soc)
         else:
             cerrarSesion(soc)
-    except socket.timeout :
-        print("Tiempo de respuesta excedido: 10 segundos")
-        cerrarSesion(soc)
-        sys.exit()
-    except IndexError:
+    except socket.timeout : #No recibe respuesta del servidor
+        terminarConTimeout(soc)
+    except IndexError: #El Servidor manda un timeout
         terminarConexion()
 
 def muestraPokemon(bytes):
-    """Despliega el pokemon asignado
+    """Despliega el pokemon asignado.
     
     :param bytes: bytes de la imagen del pokemon a desplegar
-    :type soc: bytearray
+    :type bytes: bytearray
     :returns: Nada
     """
     image = Image.open(io.BytesIO(bytes))
@@ -122,7 +119,14 @@ def muestraPokemon(bytes):
     plt.axis('off')
     plt.show()
 
-def muestraPokedex(soc, usuario):
+def muestraPokedex(soc):
+    """Muestra el Pokedex del usuario que solicita esta acción
+       al usuario.
+    
+    :param soc: Socket de la conexión
+    :type soc: Socket
+    :returns: Nada
+    """
     try:
         print("Mostrando Pokedex...")
         soc.send(bytearray([11]))
@@ -139,18 +143,30 @@ def muestraPokedex(soc, usuario):
                 pokemon = modelo.decode("utf-8")
                 pokedex.append(pokemon)
             displayPokedex(pokedex)
-    except socket.timeout:
-        print("Tiempo de respuesta excedido: 10 segundos")
-        cerrarSesion(soc)
-        sys.exit()
-    except IndexError :
+    except socket.timeout: #No recibe respuesta del servidor
+        terminarConTimeout(soc)
+    except IndexError : #El Servidor manda un timeout
         terminarConexion()
 
 def displayPokedex(pokedex):
+    """Imprime en pantalla el Pokedex de manera
+       "amigable".
+    
+    :param pokedex: Pokedex de Pokemones 
+    :type pokedex: List of String
+    :returns: Nada
+    """
     for col1,col2 in zip(pokedex[::2],pokedex[1::2]):
 	    print(col1+",",col2+",")
 
-def muestraCatalogo(soc, usuario):
+def muestraCatalogo(soc):
+    """Le muestra el catalogo disponible de Pokemones
+       al usuario.
+    
+    :param soc: Socket de la  conexión
+    :type soc: Socket
+    :returns: Nada
+    """
     try:
         print("Mostrando catálogo...")
         soc.send(bytearray([12]))
@@ -167,19 +183,24 @@ def muestraCatalogo(soc, usuario):
                 pokemon = modelo.decode("utf-8")
                 catalogo.append(pokemon)
             displayCatalogo(catalogo)
-    except socket.timeout:
-        print("Tiempo de respuesta excedido: 10 segundos")
-        cerrarSesion(soc)
-        sys.exit()
-    except IndexError :
+    except socket.timeout: #No recibe respuesta del servidor
+        terminarConTimeout(soc)
+    except IndexError : #El Servidor manda un timeout
         terminarConexion()
 
 def displayCatalogo(catalogo):
+    """Imprime en pantalla el catalogo de Pokemones
+       disponibles de manera "amigable".
+    
+    :param catalogo: Catalogo de Pokemones 
+    :type catalogo: List of String
+    :returns: Nada
+    """
     for col1,col2,col3,col4,col5,col6 in zip(catalogo[::6],catalogo[1::6],catalogo[2::6],catalogo[3::6],catalogo[4::6],catalogo[5::6]):
         print (col1+",",col2+",",col3+",",col4+",",col5+",",col6+",")
 
 def cerrarSesion(soc):
-    """Cierre normal de sesión del usuario
+    """Cierre normal de sesión del usuario.
     
     :param soc: Socket de la conexión
     :type soc: Socket
@@ -189,17 +210,29 @@ def cerrarSesion(soc):
     soc.send(CODIGO_LOGOUT)
 
 def terminarConexion():
-    """Revisa el status del socket. Si esta cerrada la conexion
-       entonces cierra la sesión por tiempo de espera excedido
+    """Termina la conexion pues el Servidor notifica que
+       el tiempo de espera ha excedido.
     
-    :param soc: Socket de la conexión
-    :type soc: Socket
+    :param soc: Nada
     :returns: Nada
     """
     print("Tiempo de respuesta excedido: 10 segundos")
     print("Terminando conexión...")
     sys.exit(1)
 
+def terminarConTimeout(soc):
+    """Termina la conexion pues el tiempo de espera de la 
+        respuesta del Servidor ha excedido.
+        
+    :param soc: Socket de la conexión
+    :type soc: Socket
+    :returns: Nada
+    """
+
+    print("Falló la conexión con el servidor...")
+    print("Terminando conexión...")
+    soc.close()
+    sys.exit(1)
 
 def main():
     """ Función principal
@@ -209,7 +242,7 @@ def main():
     port = int(sys.argv[2])
     try:
         soc.connect((host, port))
-        #soc.settimeout(10)
+        soc.settimeout(20)
     except:
         print("Connection Error")
         sys.exit()
@@ -222,19 +255,17 @@ def main():
             message = input(" >> ")
             if message == 'S' or message == 'P' or message == 'C' or message == 'X' :
                 opcion_correcta = True
-    except socket.timeout:
-        print("Tiempo de respuesta excedido: 10 segundos")
-        cerrarSesion(soc)
-        sys.exit()
-    except IndexError :
+    except socket.timeout: #No recibe respuesta del servidor
+        terminarConTimeout(soc)
+    except IndexError : #El Servidor manda un timeout
         terminarConexion()
     if message != 'S':
             if message == 'P':
                 playPokemon(soc)
             if message == 'X':
-                muestraPokedex(soc, "usuario")
+                muestraPokedex(soc)
             if message == 'C':
-                muestraCatalogo(soc,"usuario")
+                muestraCatalogo(soc)
 
     else:
             cerrarSesion(soc)
