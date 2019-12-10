@@ -11,25 +11,41 @@ Pokemon Go!
 ¿Cómo usar?
 ===========
 
+¿Quieres instalar?
+------------------
+
+* Servidor: Dirigirse a la carpeta *./Instalaciones* y ejecutar *./make_servidor -i*
+
+* Cliente: Dirigirse a la carpeta *./Instalaciones* y ejecutar *./make_cliente -i*
+
+
+¿No es la primera vez?
+----------------------
 .. note :: Primero inicializamos el servidor, y después los clientes pueden iniciar una conexión
 
 * Para el servidor
 
-    - Si es la primera vez usando el servidor del juego, por favor dirigirse a la carpeta *./Instalaciones* y ejecutar *./make_servidor*
-    
-    - En caso contrario: en una terminal, nos situamos en la ubicación del archivo *pokemonServer.py*
+    - En una terminal, nos situamos en la ubicación del archivo *pokemonServer.py*
     
     - No necesitamos parámetros extra para ejecutar el servidor. *./pokemonServer.py*
     
 * Para el cliente
-
-    - Si es la primera vez usando un cliente del juego, por favor dirigirse a la carpeta *./Instalaciones* y ejecutar *./make_cliente*
 
     - En una terminal, nos situamos en la ubicación del archivo *pokemonClient.py*
     
     - Este programa recibe como parámetros iniciales la dirección IP a través de la cual se quiere conectar, y el puerto. Por lo tanto, ejecutamos de la siguiente manera: *./pokemonClient.py <IP> <port>*
     
 .. note :: El puerto ingresado al ejecutar el cliente debe ser el mismo que usa el servidor
+
+
+¿Quieres desinstalar?
+---------------------
+
+* Servidor: Dirigirse a la carpeta *./Instalaciones* y ejecutar *./make_servidor -d*
+
+* Cliente: Dirigirse a la carpeta *./Instalaciones* y ejecutar *./make_cliente -d*
+
+
 
 Programas involucrados
 ========================
