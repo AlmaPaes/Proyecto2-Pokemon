@@ -38,14 +38,18 @@ if [ "$opcion" == "-i" ]
         cd ..
         ./pokemonServer.py ;
         
-    else echo Eliminando el manual de Linux ... 
-        cd $rutaMan ;
-        sudo rm server.7.gz ;
+    elif ["$opcion" == "-d"]
+        then echo Eliminando el manual de Linux ... 
+            cd $rutaMan ;
+            sudo rm server.7.gz ;
         
-        cd $rutaRoot
-        echo Desinstalando base de datos TCP201-Pokemon...
-        echo Contraseña del usuario doggos: doggos2020 ;
-        mysql -u doggos -p < delete_database.sql ;
+            cd $rutaRoot
+            echo Desinstalando base de datos TCP201-Pokemon...
+            echo Contraseña del usuario doggos: doggos2020 ;
+            mysql -u doggos -p < delete_database.sql ;
+    else
+        echo Uso para instalar sevidor: ./make_servidor -i
+        echo Uso para desinstalar servidor: ./make_servidor -d
         
         
 fi
