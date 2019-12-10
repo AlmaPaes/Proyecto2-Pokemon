@@ -25,26 +25,29 @@ def printPokemon():
     print(" |_|                                         ")
 
 def login(soc):
-    """Transfiere los datos al servidor para validar el acceso, y cierra el programa si los datos no son válidos
+    """Transfiere los datos al servidor para validar el acceso, y cierra el programa si los datos no son válidos.
     
     :param soc: Socket de la conexión
     :type soc: Socket
     :returns: Nada
     """
-    print("Ingrese el nombre de usuario con el que está registrado")
-    user = input(" >> ")
-    
-    print("Ingrese la contraseña")
-    psswd = getpass.getpass(" >> ")
-    
-    soc.send(user.encode(encoding='UTF-8'))
-    soc.recv(1)
-    soc.send(psswd.encode(encoding='UTF-8'))
-    access = soc.recv(1)
-    access = int.from_bytes(access,"big")
-    if access == 51:
-        print("Datos incorrectos")
-        sys.exit()
+    try:
+        print("Ingrese el nombre de usuario con el que está registrado")
+        user = input(" >> ")
+        
+        print("Ingrese la contraseña")
+        psswd = getpass.getpass(" >> ")
+        
+        soc.send(user.encode(encoding='UTF-8'))
+        soc.recv(1)
+        soc.send(psswd.encode(encoding='UTF-8'))
+        access = soc.recv(1)
+        access = int.from_bytes(access,"big")
+        if access == 51:
+            print("Datos incorrectos")
+            sys.exit(1)
+    except BrokenPipeError:
+        terminarConexion()
 
 def playPokemon(soc):
     """Permite que el usuario juegue Pokemon Go.
@@ -70,7 +73,7 @@ def playPokemon(soc):
                 respuesta = mensaje[0]
                 
                 if respuesta == 21: #aun tienes intentos
-                    print("¿Intentar captura de nuevo? Quedan " + str(mensaje[2]) + " intentos")
+                    print("¿Intentar captura de nuevo? Quedan " + str(mensaje[2]+1) + " intentos")
                     print("Sí [S] o No [N]")
                     message = input(" >> ")
                     mensaje_correcto = False
@@ -79,7 +82,7 @@ def playPokemon(soc):
                             mensaje_correcto = True
                         else:
                             print("Opción inválida >:(")
-                            print("¿Intentar captura de nuevo? Quedan " + str(mensaje[2]) + " intentos")
+                            print("¿Intentar captura de nuevo? Quedan " + str(mensaje[2]+1) + " intentos")
                             print("Sí [S] o No [N]")
                             message = input(" >> ")
                     if message == 'S':
@@ -160,7 +163,7 @@ def displayPokedex(pokedex):
 	    print(col1+",",col2+",")
 
 def muestraCatalogo(soc):
-    """Le muestra el catalogo disponible de Pokemones
+    """Le muestra el catálogo disponible de Pokemones
        al usuario.
     
     :param soc: Socket de la  conexión
@@ -189,7 +192,7 @@ def muestraCatalogo(soc):
         terminarConexion()
 
 def displayCatalogo(catalogo):
-    """Imprime en pantalla el catalogo de Pokemones
+    """Imprime en pantalla el catálogo de Pokemones
        disponibles de manera "amigable".
     
     :param catalogo: Catalogo de Pokemones 
@@ -213,7 +216,7 @@ def terminarConexion():
     """Termina la conexion pues el Servidor notifica que
        el tiempo de espera ha excedido.
     
-    :param soc: Nada
+    :param: Nada
     :returns: Nada
     """
     print("Tiempo de respuesta excedido: 10 segundos")
@@ -221,7 +224,7 @@ def terminarConexion():
     sys.exit(1)
 
 def terminarConTimeout(soc):
-    """Termina la conexion pues el tiempo de espera de la 
+    """Termina la conexión pues el tiempo de espera de la 
         respuesta del Servidor ha excedido.
         
     :param soc: Socket de la conexión
