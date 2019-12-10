@@ -7,11 +7,12 @@ import traceback
 import threading 
 import random
 
+#Configuracion para conectarse a la BD
 CONFIG = {
     'user': 'doggos',
     'password': 'doggos2020',
     'host': 'localhost',
-    'database': 'TCP201-Pokemon',
+    'database': 'TPC201-Pokemon',
     'raise_on_warnings': True
 }
 
@@ -28,7 +29,7 @@ def start_server(ip_dir):
     :returns: Nada
     """
     host = ip_dir
-    port = 9999 # arbitrary non-privileged port
+    port = 9999 # puerto arbitrario para la conexion
     soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     soc.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     print("Socket created")
@@ -37,13 +38,11 @@ def start_server(ip_dir):
     except:
         print("Bind failed. Error : " + str(sys.exc_info()))
         sys.exit()
-    soc.listen(10) # queue up to 6 requests
+    soc.listen(10) # Candidad de clientes que puede atender a la vez
     print("Socket now listening")
-    # infinite loop => do not reset for every requests
     while True:
             #connection = host | address = port
             connection, address = soc.accept() 
-            #soc.settimeout(10)  
             ip, port = str(address[0]), str(address[1])
             print("Connected with " + ip + ":" + port)
             try:
@@ -66,32 +65,35 @@ def clientThread(connection, ip, port, max_buffer_size = 5120):
     :type max_buffer_size: Entero
     :returns: Nada
     """
-    connection.settimeout(10)     #Establecemos timeout a cada hilo
+    connection.settimeout(15)     #Establecemos timeout a cada hilo
     is_active = True
-    if giveAccess(connection) == 0:
-            is_active = False
+    acceso, user = giveAccess(connection)
+    if acceso == 0:
+        is_active = False
             
-    while is_active:
-        #client_input = receive_input(connection, max_buffer_size) 
+    while is_active: 
         try:
             client_input = connection.recv(max_buffer_size)
             codigo = int.from_bytes(client_input,"big")
             if codigo == 10:    #capturar pokemon
-                playPokemonGo(connection)
+                playPokemonGo(connection, user)
                 is_active = False
             if codigo == 11:    #ver pokedex
-                muestraPokedex(connection)
+                muestraPokedex(connection, user)
                 is_active = False
             if codigo == 12:    #ver catalogo
                 muestraCatalogo(connection)
                 is_active = False
-            if codigo == 32:
+            if codigo == 32:    #no quiere hacer algo
                 is_active = False
-        except socket.timeout as timeout:
+        except socket.timeout :
             print("Tiempo de respuesta excedido: 10 segundos")
             avisoTimeout(connection)
             cerrarSesion(connection)
-            is_active = False       
+            is_active = False
+        except IndexError:
+            terminarConexion()
+
     cerrarSesion(connection)
    
 def giveAccess(connection,max_buffer_size = 5120):
@@ -101,7 +103,7 @@ def giveAccess(connection,max_buffer_size = 5120):
     :type connection: Conexión
     :param max_buffer_size: Número máximo de bytes que puede recibir en un paquete del cliente
     :type max_buffer_size: Entero
-    :returns: int - Indicador de acceso permitido
+    :returns: Integer, String
     """
     try:
         user = connection.recv(max_buffer_size)
@@ -111,36 +113,34 @@ def giveAccess(connection,max_buffer_size = 5120):
     
         psswd = connection.recv(max_buffer_size)
         psswd = psswd.decode('UTF-8')
-    except socket.timeout as timeout:
+    except socket.timeout :
         print("Tiempo de respuesta excedido: 10 segundos")
         avisoTimeout(connection)
         cerrarSesion(connection)
+    except IndexError:
+        terminarConexion()
     
     cnx = mysql.connect(**CONFIG)
     cursor = cnx.cursor()
     
     correctPsswd = ""
     query = "SELECT Nombre,Pwd FROM Usuario WHERE Nombre = '" + user + "'"
-    #print(query)
     cursor.execute(query)
     todo = cursor.fetchone()
     if todo is not None:
         nombre = todo[0]
         correctPsswd = todo[1]
-        #print(todo)
-
     
     acceso = 0
     
     if correctPsswd == psswd:
         acceso = 1
         
-    #resp = int.from_bytes(connection.recv(1),"big")
     connection.send(bytearray([acceso]))
     
-    return acceso
+    return acceso, nombre
           
-def playPokemonGo(connection):
+def playPokemonGo(connection, user):
     """
     Método que simula el comportamiento del juego Pokemon Go
     
@@ -187,21 +187,23 @@ def playPokemonGo(connection):
                                 connection.send(size_bytes)
                             if connection.recv(1)[0] == 33:
                                 connection.send(bytes)
-                                guardaEnPokedex(setIdPokemon)
+                                guardaEnPokedex(setIdPokemon, user)
                             jugando = False
                 else:#ya no quiere jugar
                     jugando = False
-            except socket.timeout as timeout:
+            except socket.timeout :
                 print("Tiempo de respuesta excedido: 10 segundos")
                 avisoTimeout(connection)
                 cerrarSesion(connection)
                 jugando = False
-        
-        #print("bai")
+            except IndexError:
+                terminarConexion()
     except socket.timeout as timeout:
         print("Tiempo de respuesta excedido: 10 segundos")
         avisoTimeout(connection)
         cerrarSesion(connection)
+    except IndexError:
+        terminarConexion()
     
 def cerrarSesion(connection):
     """Cierre de sesión entre el servidor y el cliente al cual le pertenece la conexión
@@ -212,6 +214,17 @@ def cerrarSesion(connection):
     """
     connection.close()
 
+def terminarConexion():
+    """Termina la conexion pues el Cliente notifica que
+       el tiempo de espera ha excedido.
+    
+    :param: Nada
+    :returns: Nada
+    """
+    print("Tiempo de respuesta excedido: 10 segundos")
+    print("Terminando conexión...")
+    sys.exit(1)
+
 def avisoTimeout(connection):
     """Manda el mensaje de cierre de sesión al cliente por tiempo de espera excedido (timeout)
     
@@ -220,26 +233,42 @@ def avisoTimeout(connection):
     :returns: Nada
     """
     connection.send(bytearray([40]))
-    #time.sleep(5)
 
-def guardaEnPokedex(idPokemon):
+def guardaEnPokedex(idPokemon, user):
+    """Guarda el pokemon capturado en el pokedex del
+       usuario.
+    
+    :param idPokemon: Id del Pokemon a capturado
+    :type idPokemon: Integer
+    :param user: Usuario que capturo
+    :type user: String
+    :returns: Nada
+    """
     cnx = mysql.connect(**CONFIG)
     cursor = cnx.cursor()
-    #Falta saber el usuario que hizo login
-    #user_logged = "Alejandro"
-    #user_logged = "'%s'" % user
-    #user = cursor.fetchone()[0]
-    #cursor.execute("SELECT idUsuario FROM Usuario WHERE Nombre = %s"%(user))
-    #Usuario default -> Valde
-    cursor.execute("INSERT INTO Pokedex (Usuario, Pokemon) VALUES (5, %i)"%(idPokemon))
+    userLogged = "'%s'" % user
+    cursor.execute("SELECT idUsuario FROM Usuario WHERE Nombre = %s"%(userLogged))
+    idUser = cursor.fetchone()[0]
+    cursor.execute("INSERT INTO Pokedex (Usuario, Pokemon) VALUES (%i, %i)"%(idUser,idPokemon))
     cnx.commit()
 
 
-def muestraPokedex(connection):
+def muestraPokedex(connection, user):
+    """Muestra el Pokedex del usuario.
+    
+    :param connection: Conexión entre el servidor y el cliente
+    :type connection: Conexión
+    :param user: Usuario que capturo
+    :type user: String
+    :returns: Nada
+    """
     try:
         cnx = mysql.connect(**CONFIG)
         cursor = cnx.cursor()
-        cursor.execute("SELECT Pokemon FROM Pokedex WHERE Usuario = 5")
+        userLogged = "'%s'" % user
+        cursor.execute("SELECT idUsuario FROM Usuario WHERE Nombre = %s"%(userLogged))
+        idUser = cursor.fetchone()[0]
+        cursor.execute("SELECT Pokemon FROM Pokedex WHERE Usuario = %i"%(idUser))
         result = cursor.fetchall()
         pokedex = []
         for i in result:
@@ -262,8 +291,15 @@ def muestraPokedex(connection):
         print("Tiempo de respuesta excedido: 10 segundos")
         avisoTimeout(connection)
         cerrarSesion(connection)
+    except IndexError:
+        terminarConexion()
     
 def muestraCatalogo(connection):
+    """Muestra el catalogo.
+    
+    :param connection: Conexión entre el servidor y el cliente
+    :type connection: Conexión
+    """
     try:
         cnx = mysql.connect(**CONFIG)
         cursor = cnx.cursor()
@@ -288,6 +324,8 @@ def muestraCatalogo(connection):
         print("Tiempo de respuesta excedido: 10 segundos")
         avisoTimeout(connection)
         cerrarSesion(connection)
+    except IndexError:
+        terminarConexion()
 
 if __name__ == "__main__":
    main()
