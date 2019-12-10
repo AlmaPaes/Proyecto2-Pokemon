@@ -15,20 +15,24 @@ CONFIG = {
     'raise_on_warnings': True
 }
 
+IP = "127.0.0.1"
+
+PORT = 9999
+
 def main():
     """ Función principal.
     """
     start_server(sys.argv[1])
    
-def start_server(ip_dir):
+def start_server():
     """Inicialización del servidor
     
     :param ip_dir: Dirección IP del socket al cual se va aconectar el servidor
     :type ip_dir: Cadena
     :returns: Nada
     """
-    host = ip_dir
-    port = 9999 # arbitrary non-privileged port
+    host = IP
+    port = PORT # arbitrary non-privileged port
     soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     soc.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     print("Socket created")
@@ -37,7 +41,7 @@ def start_server(ip_dir):
     except:
         print("Bind failed. Error : " + str(sys.exc_info()))
         sys.exit()
-    soc.listen(10) # queue up to 6 requests
+    soc.listen(10) # queue up to 10 requests
     print("Socket now listening")
     # infinite loop => do not reset for every requests
     while True:
@@ -103,6 +107,8 @@ def giveAccess(connection,max_buffer_size = 5120):
     :type max_buffer_size: Entero
     :returns: int - Indicador de acceso permitido
     """
+    ACCESO_PERMITIDO = 50
+    ACCESO_DENEGADO = 51
     try:
         user = connection.recv(max_buffer_size)
         user = user.decode('UTF-8')
@@ -130,10 +136,10 @@ def giveAccess(connection,max_buffer_size = 5120):
         #print(todo)
 
     
-    acceso = 0
+    acceso = ACCESO_DENEGADO
     
     if correctPsswd == psswd:
-        acceso = 1
+        acceso = ACCESO_PERMITIDO
         
     #resp = int.from_bytes(connection.recv(1),"big")
     connection.send(bytearray([acceso]))
