@@ -58,7 +58,7 @@ def printCharizard():
     print("                 / ,\"'\"\\,'               `/  `-.|\" mh\n")
 
 def login(soc):
-    """Transfiere los datos al servidor para validar el acceso, y cierra el programa si los datos no son válidos
+    """Transfiere los datos al servidor para validar el acceso, y cierra el programa si los datos no son válidos.
     
     :param soc: Socket de la conexión
     :type soc: Socket
@@ -193,7 +193,7 @@ def displayPokedex(pokedex):
 	    print(col1+",",col2+",")
 
 def muestraCatalogo(soc):
-    """Le muestra el catalogo disponible de Pokemones
+    """Le muestra el catálogo disponible de Pokemones
        al usuario.
     
     :param soc: Socket de la  conexión
@@ -222,7 +222,7 @@ def muestraCatalogo(soc):
         terminarConexion()
 
 def displayCatalogo(catalogo):
-    """Imprime en pantalla el catalogo de Pokemones
+    """Imprime en pantalla el catálogo de Pokemones
        disponibles de manera "amigable".
     
     :param catalogo: Catalogo de Pokemones 
@@ -246,7 +246,7 @@ def terminarConexion():
     """Termina la conexion pues el Servidor notifica que
        el tiempo de espera ha excedido.
     
-    :param soc: Nada
+    :param: Nada
     :returns: Nada
     """
     print("Tiempo de respuesta excedido: 10 segundos")
@@ -254,7 +254,7 @@ def terminarConexion():
     sys.exit(1)
 
 def terminarConTimeout(soc):
-    """Termina la conexion pues el tiempo de espera de la 
+    """Termina la conexión pues el tiempo de espera de la 
         respuesta del Servidor ha excedido.
         
     :param soc: Socket de la conexión

@@ -27,8 +27,8 @@ def main():
 def start_server():
     """Inicialización del servidor
     
-    :param ip_dir: Dirección IP del socket al cual se va aconectar el servidor
-    :type ip_dir: Cadena
+    :param ip_dir: Dirección IP del socket al cual se va conectar el servidor
+    :type ip_dir: String
     :returns: Nada
     """
     host = IP
@@ -61,11 +61,11 @@ def clientThread(connection, ip, port, max_buffer_size = 5120):
     :param connection: Conexión entre el servidor y el cliente que abrió el hilo
     :type connection: Conexión
     :param ip: Dirección IP de la conexión
-    :type ip: Cadena
+    :type ip: String
     :param port: Puerto a través del cual el servidor mantiene la conexión con el cliente
-    :type port: Entero
+    :type port: Integer
     :param max_buffer_size: Número máximo de bytes que puede recibir en un paquete del cliente
-    :type max_buffer_size: Entero
+    :type max_buffer_size: Integer
     :returns: Nada
     """
     connection.settimeout(15)     #Establecemos timeout a cada hilo
@@ -105,8 +105,8 @@ def giveAccess(connection,max_buffer_size = 5120):
     :param connection: Conexión entre el servidor y el cliente que abrió el hilo
     :type connection: Conexión
     :param max_buffer_size: Número máximo de bytes que puede recibir en un paquete del cliente
-    :type max_buffer_size: Entero
-    :returns: Integer, String
+    :type max_buffer_size: Integer
+    :returns: Integer, String -> Valor que representa la correctud del accesso; Cadena que reprensenta al usuario activo.
     """
     ACCESO_PERMITIDO = 50
     ACCESO_DENEGADO = 51
@@ -145,8 +145,7 @@ def giveAccess(connection,max_buffer_size = 5120):
     return acceso, nombre
           
 def playPokemonGo(connection, user):
-    """
-    Método que simula el comportamiento del juego Pokemon Go
+    """Método que simula el comportamiento del juego Pokemon Go.
     
     :param connection: Conexión entre el servidor y el cliente
     :type connection: Conexión
@@ -213,7 +212,7 @@ def playPokemonGo(connection, user):
         terminarConexion()
     
 def getNombrePokemon(idPokemon):
-    """Regresa el nombre del pokemon dado su id
+    """Regresa el nombre del pokemon dado su id.
     
     :param idPokemon: Id del Pokemon a capturado
     :type idPokemon: Integer
@@ -226,7 +225,7 @@ def getNombrePokemon(idPokemon):
     return nombrePokemon
 
 def cerrarSesion(connection):
-    """Cierre de sesión entre el servidor y el cliente al cual le pertenece la conexión
+    """Cierre de sesión entre el servidor y el cliente al cual le pertenece la conexión.
     
     :param connection: Conexión entre el cliente y el servidor
     :type connection: Conexión
@@ -235,8 +234,8 @@ def cerrarSesion(connection):
     connection.close()
 
 def terminarConexion():
-    """Termina la conexion pues el Cliente notifica que
-       el tiempo de espera ha excedido.
+    """Termina la conexion pues el Cliente notifica que el tiempo
+       de espera ha excedido.
     
     :param: Nada
     :returns: Nada
@@ -246,7 +245,7 @@ def terminarConexion():
     sys.exit(1)
 
 def avisoTimeout(connection):
-    """Manda el mensaje de cierre de sesión al cliente por tiempo de espera excedido (timeout)
+    """Manda el mensaje de cierre de sesión al cliente por tiempo de espera excedido.
     
     :param connection: Conexión entre el cliente y el servidor
     :type connection: Conexión
@@ -319,6 +318,7 @@ def muestraCatalogo(connection):
     
     :param connection: Conexión entre el servidor y el cliente
     :type connection: Conexión
+    :returns: Nada
     """
     try:
         cnx = mysql.connect(**CONFIG)
