@@ -72,7 +72,7 @@ def clientThread(connection, ip, port, max_buffer_size = 5120):
     """
     connection.settimeout(10)     #Establecemos timeout a cada hilo
     is_active = True
-    if giveAccess(connection) == 0:
+    if giveAccess(connection) == 51:
             is_active = False
             
     while is_active:
@@ -127,21 +127,17 @@ def giveAccess(connection,max_buffer_size = 5120):
     
     correctPsswd = ""
     query = "SELECT Nombre,Pwd FROM Usuario WHERE Nombre = '" + user + "'"
-    #print(query)
     cursor.execute(query)
     todo = cursor.fetchone()
     if todo is not None:
         nombre = todo[0]
         correctPsswd = todo[1]
-        #print(todo)
-
-    
+        
     acceso = ACCESO_DENEGADO
     
     if correctPsswd == psswd:
         acceso = ACCESO_PERMITIDO
-        
-    #resp = int.from_bytes(connection.recv(1),"big")
+
     connection.send(bytearray([acceso]))
     
     return acceso
