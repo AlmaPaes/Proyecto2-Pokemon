@@ -20,8 +20,9 @@ if [ "$opcion" == "-i" ]
         echo Instalando tkinter con sudo apt-get install python3-tk. Puede fallar, dependiendo de su SO y versión de Python ;
         pip install mysql-connector-python ;
         
-        echo Ejecución del cliente... ; 
-        ../pokemonClient.py 127.0.0.1 9999;
+        echo Ejecución del cliente... ;
+        cd ..
+        ./pokemonClient.py 127.0.0.1 9999;
         
     else echo Eliminando el manual de Linux ... 
         cd $rutaMan ;

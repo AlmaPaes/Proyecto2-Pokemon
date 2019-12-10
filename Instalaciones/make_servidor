@@ -35,7 +35,8 @@ if [ "$opcion" == "-i" ]
         
 
         echo Ejecución del servidor... ; 
-        ../pokemonServer.py ;
+        cd ..
+        ./pokemonServer.py ;
         
     else echo Eliminando el manual de Linux ... 
         cd $rutaMan ;

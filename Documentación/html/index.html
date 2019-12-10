@@ -9,7 +9,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Índice de Módulos Python &mdash; documentación de Proyecto2-Pokemon - </title>
+  <title>Pokemon Go! &mdash; documentación de Proyecto2-Pokemon - </title>
   
 
   
@@ -40,14 +40,8 @@
         <link rel="index" title="Índice"
               href="genindex.html"/>
         <link rel="search" title="Búsqueda" href="search.html"/>
-    <link rel="top" title="documentación de Proyecto2-Pokemon - " href="index.html"/>
- 
-
-    <script type="text/javascript">
-      DOCUMENTATION_OPTIONS.COLLAPSE_INDEX = true;
-    </script>
-
-
+    <link rel="top" title="documentación de Proyecto2-Pokemon - " href="#"/>
+        <link rel="next" title="Cliente Pokemon Go!" href="pokemonClient.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -66,7 +60,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> Proyecto2-Pokemon
+            <a href="#" class="icon icon-home"> Proyecto2-Pokemon
           
 
           
@@ -97,8 +91,8 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="client.html">Cliente</a></li>
-<li class="toctree-l1"><a class="reference internal" href="server.html">Servidor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pokemonClient.html">Cliente Pokemon Go!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pokemonServer.html">Servidor Pokemon Go!</a></li>
 </ul>
 
             
@@ -113,7 +107,7 @@
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">Proyecto2-Pokemon</a>
+          <a href="#">Proyecto2-Pokemon</a>
         
       </nav>
 
@@ -141,49 +135,82 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html">Docs</a> &raquo;</li>
+      <li><a href="#">Docs</a> &raquo;</li>
         
-      <li>Índice de Módulos Python</li>
+      <li>Pokemon Go!</li>
     
     
       <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
     
   </ul>
 
   
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="pokemonClient.html" class="btn btn-neutral float-right" title="Cliente Pokemon Go!" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+  </div>
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-
-   <h1>Índice de Módulos Python</h1>
-
-   <div class="modindex-jumpbox">
-   <a href="#cap-c"><strong>c</strong></a> | 
-   <a href="#cap-s"><strong>s</strong></a>
-   </div>
-
-   <table class="indextable modindextable">
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-c"><td></td><td>
-       <strong>c</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="client.html#module-client"><code class="xref">client</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-s"><td></td><td>
-       <strong>s</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="server.html#module-server"><code class="xref">server</code></a></td><td>
-       <em></em></td></tr>
-   </table>
+  <div class="section" id="pokemon-go">
+<h1>Pokemon Go!<a class="headerlink" href="#pokemon-go" title="Enlazar permanentemente con este título">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Bienvenido a la documentación del Proyecto 2 de la materia de Redes de Computadoras</p>
+</div>
+<div class="section" id="como-usar">
+<h2>¿Cómo usar?<a class="headerlink" href="#como-usar" title="Enlazar permanentemente con este título">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Primero inicializamos el servidor, y después los clientes pueden iniciar una conexión</p>
+</div>
+<ul>
+<li><p>Para el servidor</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Si es la primera vez usando el servidor del juego, por favor dirigirse a la carpeta <em>./Instalaciones</em> y ejecutar <em>./make_servidor</em></p></li>
+<li><p>En caso contrario: en una terminal, nos situamos en la ubicación del archivo <em>pokemonServer.py</em></p></li>
+<li><p>No necesitamos parámetros extra para ejecutar el servidor. <em>./pokemonServer.py</em></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Para el cliente</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Si es la primera vez usando un cliente del juego, por favor dirigirse a la carpeta <em>./Instalaciones</em> y ejecutar <em>./make_cliente</em></p></li>
+<li><p>En una terminal, nos situamos en la ubicación del archivo <em>pokemonClient.py</em></p></li>
+<li><p>Este programa recibe como parámetros iniciales la dirección IP a través de la cual se quiere conectar, y el puerto. Por lo tanto, ejecutamos de la siguiente manera: <em>./pokemonClient.py &lt;IP&gt; &lt;port&gt;</em></p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>El puerto ingresado al ejecutar el cliente debe ser el mismo que usa el servidor</p>
+</div>
+</div>
+<div class="section" id="programas-involucrados">
+<h2>Programas involucrados<a class="headerlink" href="#programas-involucrados" title="Enlazar permanentemente con este título">¶</a></h2>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pokemonClient.html">Cliente Pokemon Go!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pokemonServer.html">Servidor Pokemon Go!</a></li>
+</ul>
+</div>
+</div>
+</div>
 
 
            </div>
@@ -193,12 +220,19 @@
           </div>
           <footer>
   
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pokemonClient.html" class="btn btn-neutral float-right" title="Cliente Pokemon Go!" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, doggos.
+        &copy; Copyright 2019, Doggos.
 
     </p>
   </div>
