@@ -35,7 +35,7 @@ def login(soc):
     
     access = soc.recv(1)
     access = int.from_bytes(access,"big")
-    if access == 0:
+    if access == 51:
         print("Datos incorrectos")
         sys.exit()
 
