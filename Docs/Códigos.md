@@ -3,8 +3,7 @@
 1. Códigos del cliente (10)
    - 10: Solicitar al servidor por parte del cliente, un Pokemon para capturar. 
    - 11: Solicita ver el Pokedex. 
-   - 12: Solicita ver el Catalogo. 
-   - 13: Notifica usuario activo.
+   - 12: Solicita ver el Catalogo.
 2. Códigos del servidor (20)
    - 20: ¿Capturar al Pokemon x?.
    - 21: ¿Intentar captura de nuevo? Quedan k intentos.
