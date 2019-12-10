@@ -19,18 +19,7 @@
 4. Códigos de error (40):
    - 40: Se rechaza la solicitud de conexión
    - 41: Se cierra la conexión por timeout. Espera finalizada.
-
-### <u>Mensajes:</u>
-
-Definimos el contenido de cada mensaje de la siguiente manera, tomando en cuenta que cada mensaje respetará el tamaño indicado en el PDF.
-
-- 1 byte:
-  - 10: "P"
-
-
-
-## Nuevos Estados
-
-- S8: El servidor recibe la solicitud de ver catálogo de pokemones. Y lo envía.
-- S9: El cliente recibe el catálogo de pokemones.
+5. Códigos de login (50):
+   - 50: acceso permitido
+   - 51: acceso denegado
 
