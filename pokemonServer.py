@@ -12,7 +12,7 @@ CONFIG = {
     'user': 'doggos',
     'password': 'doggos2020',
     'host': 'localhost',
-    'database': 'TPC201-Pokemon',
+    'database': 'TCP201-Pokemon',
     'raise_on_warnings': True
 }
 

@@ -9,14 +9,20 @@
 
   \indexspace
   \bigletter C
-  \item \spxentry{cerrarPorTimeout()}\spxextra{en el m\IeC {\'o}dulo pokemonClient}, \hyperpage{3}
   \item \spxentry{cerrarSesion()}\spxextra{en el m\IeC {\'o}dulo pokemonClient}, \hyperpage{3}
   \item \spxentry{cerrarSesion()}\spxextra{en el m\IeC {\'o}dulo pokemonServer}, \hyperpage{4}
-  \item \spxentry{clientThread()}\spxextra{en el m\IeC {\'o}dulo pokemonServer}, \hyperpage{4}
+  \item \spxentry{clientThread()}\spxextra{en el m\IeC {\'o}dulo pokemonServer}, \hyperpage{5}
+
+  \indexspace
+  \bigletter D
+  \item \spxentry{displayCatalogo()}\spxextra{en el m\IeC {\'o}dulo pokemonClient}, \hyperpage{3}
+  \item \spxentry{displayPokedex()}\spxextra{en el m\IeC {\'o}dulo pokemonClient}, \hyperpage{3}
 
   \indexspace
   \bigletter G
-  \item \spxentry{giveAccess()}\spxextra{en el m\IeC {\'o}dulo pokemonServer}, \hyperpage{4}
+  \item \spxentry{getNombrePokemon()}\spxextra{en el m\IeC {\'o}dulo pokemonServer}, \hyperpage{5}
+  \item \spxentry{giveAccess()}\spxextra{en el m\IeC {\'o}dulo pokemonServer}, \hyperpage{5}
+  \item \spxentry{guardaEnPokedex()}\spxextra{en el m\IeC {\'o}dulo pokemonServer}, \hyperpage{5}
 
   \indexspace
   \bigletter L
@@ -25,18 +31,30 @@
   \indexspace
   \bigletter M
   \item \spxentry{main()}\spxextra{en el m\IeC {\'o}dulo pokemonClient}, \hyperpage{3}
-  \item \spxentry{main()}\spxextra{en el m\IeC {\'o}dulo pokemonServer}, \hyperpage{4}
-  \item \spxentry{muestraPokemon()}\spxextra{en el m\IeC {\'o}dulo pokemonClient}, \hyperpage{3}
+  \item \spxentry{main()}\spxextra{en el m\IeC {\'o}dulo pokemonServer}, \hyperpage{5}
+  \item \spxentry{muestraCatalogo()}\spxextra{en el m\IeC {\'o}dulo pokemonClient}, \hyperpage{3}
+  \item \spxentry{muestraCatalogo()}\spxextra{en el m\IeC {\'o}dulo pokemonServer}, \hyperpage{5}
+  \item \spxentry{muestraPokedex()}\spxextra{en el m\IeC {\'o}dulo pokemonClient}, \hyperpage{4}
+  \item \spxentry{muestraPokedex()}\spxextra{en el m\IeC {\'o}dulo pokemonServer}, \hyperpage{5}
+  \item \spxentry{muestraPokemon()}\spxextra{en el m\IeC {\'o}dulo pokemonClient}, \hyperpage{4}
 
   \indexspace
   \bigletter P
-  \item \spxentry{playPokemon()}\spxextra{en el m\IeC {\'o}dulo pokemonClient}, \hyperpage{3}
-  \item \spxentry{playPokemonGo()}\spxextra{en el m\IeC {\'o}dulo pokemonServer}, \hyperpage{4}
+  \item \spxentry{playPokemon()}\spxextra{en el m\IeC {\'o}dulo pokemonClient}, \hyperpage{4}
+  \item \spxentry{playPokemonGo()}\spxextra{en el m\IeC {\'o}dulo pokemonServer}, \hyperpage{6}
   \item \spxentry{pokemonClient}\spxextra{m\IeC {\'o}dulo}, \hyperpage{3}
   \item \spxentry{pokemonServer}\spxextra{m\IeC {\'o}dulo}, \hyperpage{4}
+  \item \spxentry{printPokemon()}\spxextra{en el m\IeC {\'o}dulo pokemonClient}, \hyperpage{4}
 
   \indexspace
   \bigletter S
-  \item \spxentry{start\_server()}\spxextra{en el m\IeC {\'o}dulo pokemonServer}, \hyperpage{4}
+  \item \spxentry{start\_server()}\spxextra{en el m\IeC {\'o}dulo pokemonServer}, \hyperpage{6}
+
+  \indexspace
+  \bigletter T
+  \item \spxentry{terminarConexion()}\spxextra{en el m\IeC {\'o}dulo pokemonClient}, \hyperpage{4}
+  \item \spxentry{terminarConexion()}\spxextra{en el m\IeC {\'o}dulo pokemonServer}, \hyperpage{6}
+  \item \spxentry{terminarConTimeout()}\spxextra{en el m\IeC {\'o}dulo pokemonClient}, 
+		\hyperpage{4}
 
 \end{sphinxtheindex}

@@ -1,0 +1,31 @@
+#!/bin/bash
+
+opcion=$1
+rutaMan=/usr/share/man/man7
+
+if [ "$opcion" == "-i" ]
+    then echo Instalación del manual del servidor en Linux... ;
+        echo . ;
+        echo . ;
+        echo . ; 
+
+        sudo cp client.7.gz $rutaMan ;
+
+        sudo mandb ;
+        
+        echo Instalación de dependencias de Python ;
+        pip install matplotlib ;
+        pip install Pillow ;
+        pip install numpy ;
+        echo Instalando tkinter con sudo apt-get install python3-tk. Puede fallar, dependiendo de su SO y versión de Python ;
+        pip install mysql-connector-python ;
+        
+        echo Ejecución del cliente... ;
+        cd ..
+        ./pokemonClient.py 127.0.0.1 9999;
+        
+    else echo Eliminando el manual de Linux ... 
+        cd $rutaMan ;
+        sudo rm client.7.gz ;
+        
+fi

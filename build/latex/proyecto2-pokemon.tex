@@ -110,19 +110,22 @@ Primero inicializamos el servidor, y después los clientes pueden iniciar una co
 Para el servidor
 \begin{itemize}
 \item {} 
-Pasos previos para instalar la base de datos. Revisar archivo.
+Si es la primera vez usando el servidor del juego, por favor dirigirse a la carpeta \sphinxstyleemphasis{./Instalaciones} y ejecutar \sphinxstyleemphasis{./make\_servidor}
 
 \item {} 
-En una terminal, nos situamos en la ubicación del archivo \sphinxstyleemphasis{pokemonServer.py}
+En caso contrario: en una terminal, nos situamos en la ubicación del archivo \sphinxstyleemphasis{pokemonServer.py}
 
 \item {} 
-Para que se pueda establecer la comunicación satisfactoriamente, necesitamos ingresar la dirección IP al momento de iniciar el servidor. Por lo tanto, ejecutamos \sphinxstyleemphasis{./pokemonServer.py \textless{}IP\textgreater{}}
+No necesitamos parámetros extra para ejecutar el servidor. \sphinxstyleemphasis{./pokemonServer.py}
 
 \end{itemize}
 
 \item {} 
 Para el cliente
 \begin{itemize}
+\item {} 
+Si es la primera vez usando un cliente del juego, por favor dirigirse a la carpeta \sphinxstyleemphasis{./Instalaciones} y ejecutar \sphinxstyleemphasis{./make\_cliente}
+
 \item {} 
 En una terminal, nos situamos en la ubicación del archivo \sphinxstyleemphasis{pokemonClient.py}
 
@@ -134,7 +137,7 @@ Este programa recibe como parámetros iniciales la dirección IP a través de la
 \end{itemize}
 
 \begin{sphinxadmonition}{note}{Nota:}
-La dirección IP ingresada al ejecutar el cliente y el servidor debe ser la misma
+El puerto ingresado al ejecutar el cliente debe ser el mismo que usa el servidor
 \end{sphinxadmonition}
 
 
@@ -145,11 +148,11 @@ La dirección IP ingresada al ejecutar el cliente y el servidor debe ser la mism
 \label{\detokenize{pokemonClient:cliente-pokemon-go}}\label{\detokenize{pokemonClient::doc}}
 Implementación de un cliente para el juego Pokemon Go! e interactúa directamente con el usuario
 
-\phantomsection\label{\detokenize{pokemonClient:module-pokemonClient}}\index{pokemonClient (módulo)@\spxentry{pokemonClient}\spxextra{módulo}}\index{cerrarPorTimeout() (en el módulo pokemonClient)@\spxentry{cerrarPorTimeout()}\spxextra{en el módulo pokemonClient}}
+\phantomsection\label{\detokenize{pokemonClient:module-pokemonClient}}\index{pokemonClient (módulo)@\spxentry{pokemonClient}\spxextra{módulo}}\index{cerrarSesion() (en el módulo pokemonClient)@\spxentry{cerrarSesion()}\spxextra{en el módulo pokemonClient}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{pokemonClient:pokemonClient.cerrarPorTimeout}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pokemonClient.}}\sphinxbfcode{\sphinxupquote{cerrarPorTimeout}}}{\emph{soc}}{}
-Cierre de sesión por tiempo de espera excedido
+\phantomsection\label{\detokenize{pokemonClient:pokemonClient.cerrarSesion}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pokemonClient.}}\sphinxbfcode{\sphinxupquote{cerrarSesion}}}{\emph{soc}}{}
+Cierre normal de sesión del usuario.
 \begin{quote}\begin{description}
 \item[{Parámetros}] \leavevmode
 \sphinxstyleliteralstrong{\sphinxupquote{soc}} (\sphinxstyleliteralemphasis{\sphinxupquote{Socket}}) \textendash{} Socket de la conexión
@@ -161,14 +164,36 @@ Nada
 
 \end{fulllineitems}
 
-\index{cerrarSesion() (en el módulo pokemonClient)@\spxentry{cerrarSesion()}\spxextra{en el módulo pokemonClient}}
+\index{displayCatalogo() (en el módulo pokemonClient)@\spxentry{displayCatalogo()}\spxextra{en el módulo pokemonClient}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{pokemonClient:pokemonClient.cerrarSesion}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pokemonClient.}}\sphinxbfcode{\sphinxupquote{cerrarSesion}}}{\emph{soc}}{}
-Cierre normal de sesión del usuario
+\phantomsection\label{\detokenize{pokemonClient:pokemonClient.displayCatalogo}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pokemonClient.}}\sphinxbfcode{\sphinxupquote{displayCatalogo}}}{\emph{catalogo}}{}~\begin{description}
+\item[{Imprime en pantalla el catálogo de Pokemones}] \leavevmode
+disponibles de manera «amigable».
+
+\end{description}
 \begin{quote}\begin{description}
 \item[{Parámetros}] \leavevmode
-\sphinxstyleliteralstrong{\sphinxupquote{soc}} (\sphinxstyleliteralemphasis{\sphinxupquote{Socket}}) \textendash{} Socket de la conexión
+\sphinxstyleliteralstrong{\sphinxupquote{catalogo}} (\sphinxstyleliteralemphasis{\sphinxupquote{List of String}}) \textendash{} Catalogo de Pokemones
+
+\item[{Devuelve}] \leavevmode
+Nada
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{displayPokedex() (en el módulo pokemonClient)@\spxentry{displayPokedex()}\spxextra{en el módulo pokemonClient}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{pokemonClient:pokemonClient.displayPokedex}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pokemonClient.}}\sphinxbfcode{\sphinxupquote{displayPokedex}}}{\emph{pokedex}}{}~\begin{description}
+\item[{Imprime en pantalla el Pokedex de manera}] \leavevmode
+«amigable».
+
+\end{description}
+\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode
+\sphinxstyleliteralstrong{\sphinxupquote{pokedex}} (\sphinxstyleliteralemphasis{\sphinxupquote{List of String}}) \textendash{} Pokedex de Pokemones
 
 \item[{Devuelve}] \leavevmode
 Nada
@@ -181,7 +206,7 @@ Nada
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{pokemonClient:pokemonClient.login}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pokemonClient.}}\sphinxbfcode{\sphinxupquote{login}}}{\emph{soc}}{}
-Transfiere los datos al servidor para validar el acceso, y cierra el programa si los datos no son válidos
+Transfiere los datos al servidor para validar el acceso, y cierra el programa si los datos no son válidos.
 \begin{quote}\begin{description}
 \item[{Parámetros}] \leavevmode
 \sphinxstyleliteralstrong{\sphinxupquote{soc}} (\sphinxstyleliteralemphasis{\sphinxupquote{Socket}}) \textendash{} Socket de la conexión
@@ -201,14 +226,52 @@ Función principal
 
 \end{fulllineitems}
 
+\index{muestraCatalogo() (en el módulo pokemonClient)@\spxentry{muestraCatalogo()}\spxextra{en el módulo pokemonClient}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{pokemonClient:pokemonClient.muestraCatalogo}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pokemonClient.}}\sphinxbfcode{\sphinxupquote{muestraCatalogo}}}{\emph{soc}}{}~\begin{description}
+\item[{Le muestra el catálogo disponible de Pokemones}] \leavevmode
+al usuario.
+
+\end{description}
+\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode
+\sphinxstyleliteralstrong{\sphinxupquote{soc}} (\sphinxstyleliteralemphasis{\sphinxupquote{Socket}}) \textendash{} Socket de la  conexión
+
+\item[{Devuelve}] \leavevmode
+Nada
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{muestraPokedex() (en el módulo pokemonClient)@\spxentry{muestraPokedex()}\spxextra{en el módulo pokemonClient}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{pokemonClient:pokemonClient.muestraPokedex}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pokemonClient.}}\sphinxbfcode{\sphinxupquote{muestraPokedex}}}{\emph{soc}}{}~\begin{description}
+\item[{Muestra el Pokedex del usuario que solicita esta acción}] \leavevmode
+al usuario.
+
+\end{description}
+\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode
+\sphinxstyleliteralstrong{\sphinxupquote{soc}} (\sphinxstyleliteralemphasis{\sphinxupquote{Socket}}) \textendash{} Socket de la conexión
+
+\item[{Devuelve}] \leavevmode
+Nada
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
 \index{muestraPokemon() (en el módulo pokemonClient)@\spxentry{muestraPokemon()}\spxextra{en el módulo pokemonClient}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{pokemonClient:pokemonClient.muestraPokemon}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pokemonClient.}}\sphinxbfcode{\sphinxupquote{muestraPokemon}}}{\emph{bytes}}{}
-Despliega el pokemon asignado
+Despliega el pokemon asignado.
 \begin{quote}\begin{description}
 \item[{Parámetros}] \leavevmode
-\sphinxstyleliteralstrong{\sphinxupquote{bytes}} \textendash{} bytes de la imagen del pokemon a desplegar
+\sphinxstyleliteralstrong{\sphinxupquote{bytes}} (\sphinxstyleliteralemphasis{\sphinxupquote{bytearray}}) \textendash{} bytes de la imagen del pokemon a desplegar
 
 \item[{Devuelve}] \leavevmode
 Nada
@@ -221,10 +284,57 @@ Nada
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{pokemonClient:pokemonClient.playPokemon}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pokemonClient.}}\sphinxbfcode{\sphinxupquote{playPokemon}}}{\emph{soc}}{}
-Permite que el usuario juegue Pokemon Go
+Permite que el usuario juegue Pokemon Go.
 \begin{quote}\begin{description}
 \item[{Parámetros}] \leavevmode
 \sphinxstyleliteralstrong{\sphinxupquote{soc}} (\sphinxstyleliteralemphasis{\sphinxupquote{Socket}}) \textendash{} Socket de la conexión
+
+\item[{Devuelve}] \leavevmode
+Nada
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{printPokemon() (en el módulo pokemonClient)@\spxentry{printPokemon()}\spxextra{en el módulo pokemonClient}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{pokemonClient:pokemonClient.printPokemon}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pokemonClient.}}\sphinxbfcode{\sphinxupquote{printPokemon}}}{}{}
+Imprime en pantalla el logo Pokemon
+:returns: Nada
+
+\end{fulllineitems}
+
+\index{terminarConTimeout() (en el módulo pokemonClient)@\spxentry{terminarConTimeout()}\spxextra{en el módulo pokemonClient}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{pokemonClient:pokemonClient.terminarConTimeout}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pokemonClient.}}\sphinxbfcode{\sphinxupquote{terminarConTimeout}}}{\emph{soc}}{}~\begin{description}
+\item[{Termina la conexión pues el tiempo de espera de la}] \leavevmode
+respuesta del Servidor ha excedido.
+
+\end{description}
+\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode
+\sphinxstyleliteralstrong{\sphinxupquote{soc}} (\sphinxstyleliteralemphasis{\sphinxupquote{Socket}}) \textendash{} Socket de la conexión
+
+\item[{Devuelve}] \leavevmode
+Nada
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{terminarConexion() (en el módulo pokemonClient)@\spxentry{terminarConexion()}\spxextra{en el módulo pokemonClient}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{pokemonClient:pokemonClient.terminarConexion}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pokemonClient.}}\sphinxbfcode{\sphinxupquote{terminarConexion}}}{}{}~\begin{description}
+\item[{Termina la conexion pues el Servidor notifica que}] \leavevmode
+el tiempo de espera ha excedido.
+
+\end{description}
+\begin{quote}\begin{description}
+\item[{Param}] \leavevmode
+Nada
 
 \item[{Devuelve}] \leavevmode
 Nada
@@ -243,7 +353,7 @@ Implementación de un servidor para el juego Pokemon Go!
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{pokemonServer:pokemonServer.avisoTimeout}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pokemonServer.}}\sphinxbfcode{\sphinxupquote{avisoTimeout}}}{\emph{connection}}{}
-Manda el mensaje de cierre de sesión al cliente por tiempo de espera excedido (timeout)
+Manda el mensaje de cierre de sesión al cliente por tiempo de espera excedido.
 \begin{quote}\begin{description}
 \item[{Parámetros}] \leavevmode
 \sphinxstyleliteralstrong{\sphinxupquote{connection}} (\sphinxstyleliteralemphasis{\sphinxupquote{Conexión}}) \textendash{} Conexión entre el cliente y el servidor
@@ -259,7 +369,7 @@ Nada
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{pokemonServer:pokemonServer.cerrarSesion}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pokemonServer.}}\sphinxbfcode{\sphinxupquote{cerrarSesion}}}{\emph{connection}}{}
-Cierre de sesión entre el servidor y el cliente al cual le pertenece la conexión
+Cierre de sesión entre el servidor y el cliente al cual le pertenece la conexión.
 \begin{quote}\begin{description}
 \item[{Parámetros}] \leavevmode
 \sphinxstyleliteralstrong{\sphinxupquote{connection}} (\sphinxstyleliteralemphasis{\sphinxupquote{Conexión}}) \textendash{} Conexión entre el cliente y el servidor
@@ -282,18 +392,34 @@ Manejador del hilo que sostiene la conexión entre el servidor y un cliente
 \sphinxstyleliteralstrong{\sphinxupquote{connection}} (\sphinxstyleliteralemphasis{\sphinxupquote{Conexión}}) \textendash{} Conexión entre el servidor y el cliente que abrió el hilo
 
 \item {} 
-\sphinxstyleliteralstrong{\sphinxupquote{ip}} (\sphinxstyleliteralemphasis{\sphinxupquote{Cadena}}) \textendash{} Dirección IP de la conexión
+\sphinxstyleliteralstrong{\sphinxupquote{ip}} (\sphinxstyleliteralemphasis{\sphinxupquote{String}}) \textendash{} Dirección IP de la conexión
 
 \item {} 
-\sphinxstyleliteralstrong{\sphinxupquote{port}} (\sphinxstyleliteralemphasis{\sphinxupquote{Entero}}) \textendash{} Puerto a través del cual el servidor mantiene la conexión con el cliente
+\sphinxstyleliteralstrong{\sphinxupquote{port}} (\sphinxstyleliteralemphasis{\sphinxupquote{Integer}}) \textendash{} Puerto a través del cual el servidor mantiene la conexión con el cliente
 
 \item {} 
-\sphinxstyleliteralstrong{\sphinxupquote{max\_buffer\_size}} (\sphinxstyleliteralemphasis{\sphinxupquote{Entero}}) \textendash{} Número máximo de bytes que puede recibir en un paquete del cliente
+\sphinxstyleliteralstrong{\sphinxupquote{max\_buffer\_size}} (\sphinxstyleliteralemphasis{\sphinxupquote{Integer}}) \textendash{} Número máximo de bytes que puede recibir en un paquete del cliente
 
 \end{itemize}
 
 \item[{Devuelve}] \leavevmode
 Nada
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{getNombrePokemon() (en el módulo pokemonServer)@\spxentry{getNombrePokemon()}\spxextra{en el módulo pokemonServer}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{pokemonServer:pokemonServer.getNombrePokemon}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pokemonServer.}}\sphinxbfcode{\sphinxupquote{getNombrePokemon}}}{\emph{idPokemon}}{}
+Regresa el nombre del pokemon dado su id.
+\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode
+\sphinxstyleliteralstrong{\sphinxupquote{idPokemon}} (\sphinxstyleliteralemphasis{\sphinxupquote{Integer}}) \textendash{} Id del Pokemon a capturado
+
+\item[{Devuelve}] \leavevmode
+String
 
 \end{description}\end{quote}
 
@@ -310,12 +436,37 @@ Autentifica a usuarios registrados y proporciona acceso a la ejecución de la ap
 \sphinxstyleliteralstrong{\sphinxupquote{connection}} (\sphinxstyleliteralemphasis{\sphinxupquote{Conexión}}) \textendash{} Conexión entre el servidor y el cliente que abrió el hilo
 
 \item {} 
-\sphinxstyleliteralstrong{\sphinxupquote{max\_buffer\_size}} (\sphinxstyleliteralemphasis{\sphinxupquote{Entero}}) \textendash{} Número máximo de bytes que puede recibir en un paquete del cliente
+\sphinxstyleliteralstrong{\sphinxupquote{max\_buffer\_size}} (\sphinxstyleliteralemphasis{\sphinxupquote{Integer}}) \textendash{} Número máximo de bytes que puede recibir en un paquete del cliente
 
 \end{itemize}
 
 \item[{Devuelve}] \leavevmode
-int - Indicador de acceso permitido
+Integer, String -\textgreater{} Valor que representa la correctud del accesso; Cadena que reprensenta al usuario activo.
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{guardaEnPokedex() (en el módulo pokemonServer)@\spxentry{guardaEnPokedex()}\spxextra{en el módulo pokemonServer}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{pokemonServer:pokemonServer.guardaEnPokedex}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pokemonServer.}}\sphinxbfcode{\sphinxupquote{guardaEnPokedex}}}{\emph{idPokemon}, \emph{user}}{}~\begin{description}
+\item[{Guarda el pokemon capturado en el pokedex del}] \leavevmode
+usuario.
+
+\end{description}
+\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{idPokemon}} (\sphinxstyleliteralemphasis{\sphinxupquote{Integer}}) \textendash{} Id del Pokemon a capturado
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{user}} (\sphinxstyleliteralemphasis{\sphinxupquote{String}}) \textendash{} Usuario que capturo
+
+\end{itemize}
+
+\item[{Devuelve}] \leavevmode
+Nada
 
 \end{description}\end{quote}
 
@@ -329,11 +480,49 @@ Función principal.
 
 \end{fulllineitems}
 
+\index{muestraCatalogo() (en el módulo pokemonServer)@\spxentry{muestraCatalogo()}\spxextra{en el módulo pokemonServer}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{pokemonServer:pokemonServer.muestraCatalogo}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pokemonServer.}}\sphinxbfcode{\sphinxupquote{muestraCatalogo}}}{\emph{connection}}{}
+Muestra el catalogo.
+\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode
+\sphinxstyleliteralstrong{\sphinxupquote{connection}} (\sphinxstyleliteralemphasis{\sphinxupquote{Conexión}}) \textendash{} Conexión entre el servidor y el cliente
+
+\item[{Devuelve}] \leavevmode
+Nada
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{muestraPokedex() (en el módulo pokemonServer)@\spxentry{muestraPokedex()}\spxextra{en el módulo pokemonServer}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{pokemonServer:pokemonServer.muestraPokedex}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pokemonServer.}}\sphinxbfcode{\sphinxupquote{muestraPokedex}}}{\emph{connection}, \emph{user}}{}
+Muestra el Pokedex del usuario.
+\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{connection}} (\sphinxstyleliteralemphasis{\sphinxupquote{Conexión}}) \textendash{} Conexión entre el servidor y el cliente
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{user}} (\sphinxstyleliteralemphasis{\sphinxupquote{String}}) \textendash{} Usuario que capturo
+
+\end{itemize}
+
+\item[{Devuelve}] \leavevmode
+Nada
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
 \index{playPokemonGo() (en el módulo pokemonServer)@\spxentry{playPokemonGo()}\spxextra{en el módulo pokemonServer}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{pokemonServer:pokemonServer.playPokemonGo}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pokemonServer.}}\sphinxbfcode{\sphinxupquote{playPokemonGo}}}{\emph{connection}}{}
-Método que simula el comportamiento del juego Pokemon Go
+\phantomsection\label{\detokenize{pokemonServer:pokemonServer.playPokemonGo}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pokemonServer.}}\sphinxbfcode{\sphinxupquote{playPokemonGo}}}{\emph{connection}, \emph{user}}{}
+Método que simula el comportamiento del juego Pokemon Go.
 \begin{quote}\begin{description}
 \item[{Parámetros}] \leavevmode
 \sphinxstyleliteralstrong{\sphinxupquote{connection}} (\sphinxstyleliteralemphasis{\sphinxupquote{Conexión}}) \textendash{} Conexión entre el servidor y el cliente
@@ -348,11 +537,30 @@ Nada
 \index{start\_server() (en el módulo pokemonServer)@\spxentry{start\_server()}\spxextra{en el módulo pokemonServer}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{pokemonServer:pokemonServer.start_server}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pokemonServer.}}\sphinxbfcode{\sphinxupquote{start\_server}}}{\emph{ip\_dir}}{}
+\phantomsection\label{\detokenize{pokemonServer:pokemonServer.start_server}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pokemonServer.}}\sphinxbfcode{\sphinxupquote{start\_server}}}{}{}
 Inicialización del servidor
 \begin{quote}\begin{description}
 \item[{Parámetros}] \leavevmode
-\sphinxstyleliteralstrong{\sphinxupquote{ip\_dir}} (\sphinxstyleliteralemphasis{\sphinxupquote{Cadena}}) \textendash{} Dirección IP del socket al cual se va aconectar el servidor
+\sphinxstyleliteralstrong{\sphinxupquote{ip\_dir}} (\sphinxstyleliteralemphasis{\sphinxupquote{String}}) \textendash{} Dirección IP del socket al cual se va conectar el servidor
+
+\item[{Devuelve}] \leavevmode
+Nada
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{terminarConexion() (en el módulo pokemonServer)@\spxentry{terminarConexion()}\spxextra{en el módulo pokemonServer}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{pokemonServer:pokemonServer.terminarConexion}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pokemonServer.}}\sphinxbfcode{\sphinxupquote{terminarConexion}}}{}{}~\begin{description}
+\item[{Termina la conexion pues el Cliente notifica que el tiempo}] \leavevmode
+de espera ha excedido.
+
+\end{description}
+\begin{quote}\begin{description}
+\item[{Param}] \leavevmode
+Nada
 
 \item[{Devuelve}] \leavevmode
 Nada

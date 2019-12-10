@@ -179,15 +179,16 @@
 <li><p>Para el servidor</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Pasos previos para instalar la base de datos. Revisar archivo.</p></li>
-<li><p>En una terminal, nos situamos en la ubicación del archivo <em>pokemonServer.py</em></p></li>
-<li><p>Para que se pueda establecer la comunicación satisfactoriamente, necesitamos ingresar la dirección IP al momento de iniciar el servidor. Por lo tanto, ejecutamos <em>./pokemonServer.py &lt;IP&gt;</em></p></li>
+<li><p>Si es la primera vez usando el servidor del juego, por favor dirigirse a la carpeta <em>./Instalaciones</em> y ejecutar <em>./make_servidor</em></p></li>
+<li><p>En caso contrario: en una terminal, nos situamos en la ubicación del archivo <em>pokemonServer.py</em></p></li>
+<li><p>No necesitamos parámetros extra para ejecutar el servidor. <em>./pokemonServer.py</em></p></li>
 </ul>
 </div></blockquote>
 </li>
 <li><p>Para el cliente</p>
 <blockquote>
 <div><ul class="simple">
+<li><p>Si es la primera vez usando un cliente del juego, por favor dirigirse a la carpeta <em>./Instalaciones</em> y ejecutar <em>./make_cliente</em></p></li>
 <li><p>En una terminal, nos situamos en la ubicación del archivo <em>pokemonClient.py</em></p></li>
 <li><p>Este programa recibe como parámetros iniciales la dirección IP a través de la cual se quiere conectar, y el puerto. Por lo tanto, ejecutamos de la siguiente manera: <em>./pokemonClient.py &lt;IP&gt; &lt;port&gt;</em></p></li>
 </ul>
@@ -196,7 +197,7 @@
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
-<p>La dirección IP ingresada al ejecutar el cliente y el servidor debe ser la misma</p>
+<p>El puerto ingresado al ejecutar el cliente debe ser el mismo que usa el servidor</p>
 </div>
 </div>
 <div class="section" id="programas-involucrados">

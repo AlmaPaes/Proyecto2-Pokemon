@@ -1,9 +1,0 @@
-#!/bin/bash
-
-rutaMan=/usr/share/man/man7
-
-sudo cp client.7.gz $rutaMan
-
-sudo cp server.7.gz $rutaMan
-
-sudo mandb

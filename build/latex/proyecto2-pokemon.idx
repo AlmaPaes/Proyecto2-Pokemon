@@ -1,15 +1,26 @@
 \indexentry{pokemonClient (m\IeC {\'o}dulo)@\spxentry{pokemonClient}\spxextra{m\IeC {\'o}dulo}|hyperpage}{3}
-\indexentry{cerrarPorTimeout() (en el m\IeC {\'o}dulo pokemonClient)@\spxentry{cerrarPorTimeout()}\spxextra{en el m\IeC {\'o}dulo pokemonClient}|hyperpage}{3}
 \indexentry{cerrarSesion() (en el m\IeC {\'o}dulo pokemonClient)@\spxentry{cerrarSesion()}\spxextra{en el m\IeC {\'o}dulo pokemonClient}|hyperpage}{3}
+\indexentry{displayCatalogo() (en el m\IeC {\'o}dulo pokemonClient)@\spxentry{displayCatalogo()}\spxextra{en el m\IeC {\'o}dulo pokemonClient}|hyperpage}{3}
+\indexentry{displayPokedex() (en el m\IeC {\'o}dulo pokemonClient)@\spxentry{displayPokedex()}\spxextra{en el m\IeC {\'o}dulo pokemonClient}|hyperpage}{3}
 \indexentry{login() (en el m\IeC {\'o}dulo pokemonClient)@\spxentry{login()}\spxextra{en el m\IeC {\'o}dulo pokemonClient}|hyperpage}{3}
 \indexentry{main() (en el m\IeC {\'o}dulo pokemonClient)@\spxentry{main()}\spxextra{en el m\IeC {\'o}dulo pokemonClient}|hyperpage}{3}
-\indexentry{muestraPokemon() (en el m\IeC {\'o}dulo pokemonClient)@\spxentry{muestraPokemon()}\spxextra{en el m\IeC {\'o}dulo pokemonClient}|hyperpage}{3}
-\indexentry{playPokemon() (en el m\IeC {\'o}dulo pokemonClient)@\spxentry{playPokemon()}\spxextra{en el m\IeC {\'o}dulo pokemonClient}|hyperpage}{3}
+\indexentry{muestraCatalogo() (en el m\IeC {\'o}dulo pokemonClient)@\spxentry{muestraCatalogo()}\spxextra{en el m\IeC {\'o}dulo pokemonClient}|hyperpage}{3}
+\indexentry{muestraPokedex() (en el m\IeC {\'o}dulo pokemonClient)@\spxentry{muestraPokedex()}\spxextra{en el m\IeC {\'o}dulo pokemonClient}|hyperpage}{4}
+\indexentry{muestraPokemon() (en el m\IeC {\'o}dulo pokemonClient)@\spxentry{muestraPokemon()}\spxextra{en el m\IeC {\'o}dulo pokemonClient}|hyperpage}{4}
+\indexentry{playPokemon() (en el m\IeC {\'o}dulo pokemonClient)@\spxentry{playPokemon()}\spxextra{en el m\IeC {\'o}dulo pokemonClient}|hyperpage}{4}
+\indexentry{printPokemon() (en el m\IeC {\'o}dulo pokemonClient)@\spxentry{printPokemon()}\spxextra{en el m\IeC {\'o}dulo pokemonClient}|hyperpage}{4}
+\indexentry{terminarConTimeout() (en el m\IeC {\'o}dulo pokemonClient)@\spxentry{terminarConTimeout()}\spxextra{en el m\IeC {\'o}dulo pokemonClient}|hyperpage}{4}
+\indexentry{terminarConexion() (en el m\IeC {\'o}dulo pokemonClient)@\spxentry{terminarConexion()}\spxextra{en el m\IeC {\'o}dulo pokemonClient}|hyperpage}{4}
 \indexentry{pokemonServer (m\IeC {\'o}dulo)@\spxentry{pokemonServer}\spxextra{m\IeC {\'o}dulo}|hyperpage}{4}
 \indexentry{avisoTimeout() (en el m\IeC {\'o}dulo pokemonServer)@\spxentry{avisoTimeout()}\spxextra{en el m\IeC {\'o}dulo pokemonServer}|hyperpage}{4}
 \indexentry{cerrarSesion() (en el m\IeC {\'o}dulo pokemonServer)@\spxentry{cerrarSesion()}\spxextra{en el m\IeC {\'o}dulo pokemonServer}|hyperpage}{4}
-\indexentry{clientThread() (en el m\IeC {\'o}dulo pokemonServer)@\spxentry{clientThread()}\spxextra{en el m\IeC {\'o}dulo pokemonServer}|hyperpage}{4}
-\indexentry{giveAccess() (en el m\IeC {\'o}dulo pokemonServer)@\spxentry{giveAccess()}\spxextra{en el m\IeC {\'o}dulo pokemonServer}|hyperpage}{4}
-\indexentry{main() (en el m\IeC {\'o}dulo pokemonServer)@\spxentry{main()}\spxextra{en el m\IeC {\'o}dulo pokemonServer}|hyperpage}{4}
-\indexentry{playPokemonGo() (en el m\IeC {\'o}dulo pokemonServer)@\spxentry{playPokemonGo()}\spxextra{en el m\IeC {\'o}dulo pokemonServer}|hyperpage}{4}
-\indexentry{start\_server() (en el m\IeC {\'o}dulo pokemonServer)@\spxentry{start\_server()}\spxextra{en el m\IeC {\'o}dulo pokemonServer}|hyperpage}{4}
+\indexentry{clientThread() (en el m\IeC {\'o}dulo pokemonServer)@\spxentry{clientThread()}\spxextra{en el m\IeC {\'o}dulo pokemonServer}|hyperpage}{5}
+\indexentry{getNombrePokemon() (en el m\IeC {\'o}dulo pokemonServer)@\spxentry{getNombrePokemon()}\spxextra{en el m\IeC {\'o}dulo pokemonServer}|hyperpage}{5}
+\indexentry{giveAccess() (en el m\IeC {\'o}dulo pokemonServer)@\spxentry{giveAccess()}\spxextra{en el m\IeC {\'o}dulo pokemonServer}|hyperpage}{5}
+\indexentry{guardaEnPokedex() (en el m\IeC {\'o}dulo pokemonServer)@\spxentry{guardaEnPokedex()}\spxextra{en el m\IeC {\'o}dulo pokemonServer}|hyperpage}{5}
+\indexentry{main() (en el m\IeC {\'o}dulo pokemonServer)@\spxentry{main()}\spxextra{en el m\IeC {\'o}dulo pokemonServer}|hyperpage}{5}
+\indexentry{muestraCatalogo() (en el m\IeC {\'o}dulo pokemonServer)@\spxentry{muestraCatalogo()}\spxextra{en el m\IeC {\'o}dulo pokemonServer}|hyperpage}{5}
+\indexentry{muestraPokedex() (en el m\IeC {\'o}dulo pokemonServer)@\spxentry{muestraPokedex()}\spxextra{en el m\IeC {\'o}dulo pokemonServer}|hyperpage}{5}
+\indexentry{playPokemonGo() (en el m\IeC {\'o}dulo pokemonServer)@\spxentry{playPokemonGo()}\spxextra{en el m\IeC {\'o}dulo pokemonServer}|hyperpage}{6}
+\indexentry{start\_server() (en el m\IeC {\'o}dulo pokemonServer)@\spxentry{start\_server()}\spxextra{en el m\IeC {\'o}dulo pokemonServer}|hyperpage}{6}
+\indexentry{terminarConexion() (en el m\IeC {\'o}dulo pokemonServer)@\spxentry{terminarConexion()}\spxextra{en el m\IeC {\'o}dulo pokemonServer}|hyperpage}{6}
