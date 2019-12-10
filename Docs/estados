@@ -6,13 +6,13 @@ s2 - acceso denegado
 
 s3 - se recibe una solicitud para capturar un pokemon, y manda el id del pokemon a capturar
 
-s4 - se recibe una solicitud para ver el catálogo de pokemones 
+s4 - se recibe una solicitud para ver el pokedex
 
-s5 - muestra el catálogo 
+s5 - el servidor comienza a transferir el pokedex al cliente, muestra el pokedex al usuario
 
-s6 - se recibe una solicitud para ver el pokedex
+s6 - se recibe una solicitud para ver el catálogo de pokemones
 
-s7 - muestra el pokedex
+s7 -  el servidor comienza a transferir el catalogo al cliente, muestra el catálogo de pokemones al usuario
 
 s8 - indica si quiere capturar o no el pokemon ofrecido
 
@@ -20,7 +20,7 @@ s9 - se inicia un contador con el máximo número de intentos, e indica aleatori
 
 s10 - da respuesta para reintentar captura de pokemon
 
-s11 - muestra imagen del pokemon capturado
+s11 - el cliente recibe la imagen del servidor, muestra imagen del pokemon capturado
 
 s12 - terminando la sesión
 
