@@ -40,6 +40,10 @@ if [ "$opcion" == "-i" ]
         
             cd $rutaRoot
             echo Desinstalando base de datos TCP201-Pokemon... ;
+            echo Ingrese el usuario de mysql propietario de la base de datos:
+        
+            read userDB ;
+            
             mysql -u $userDB -p < delete_database.sql ;
     else
         echo Uso para instalar sevidor: ./make_servidor -i ;
