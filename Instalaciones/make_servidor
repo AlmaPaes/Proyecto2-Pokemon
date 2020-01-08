@@ -21,7 +21,9 @@ if [ "$opcion" == "-i" ]
         
         read userDB ;
 
-        mysql -u $userDB -p < make_database.sql ;
+        #mysql -u $userDB -p < make_database.sql ;
+        sudo mysql < make_database.sql ;
+        sudo mysql < create_user.sql ;
         
         echo Instalación de dependencias de Python ;
         pip3 install mysql-connector-python ;
@@ -29,9 +31,9 @@ if [ "$opcion" == "-i" ]
         pip3 install threaded ;
         
 
-        echo Ejecución del servidor... ; 
-        cd ..
-        ./pokemonServer.py ;
+        #echo Ejecución del servidor... ; 
+        #cd ..
+        #./pokemonServer.py ;
         
     elif [ "$opcion" == "-d" ]
         then echo Eliminando el manual de Linux ... 
@@ -40,7 +42,8 @@ if [ "$opcion" == "-i" ]
         
             cd $rutaRoot
             echo Desinstalando base de datos TCP201-Pokemon... ;
-            mysql -u $userDB -p < delete_database.sql ;
+            #mysql -u $userDB -p < delete_database.sql ;
+            sudo mysql < delete_database.sql
     else
         echo Uso para instalar sevidor: ./make_servidor -i ;
         echo Uso para desinstalar servidor: ./make_servidor -d ;
