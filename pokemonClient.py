@@ -148,7 +148,8 @@ def muestraPokedex(soc):
                 modelo = soc.recv(pokemon_size)
                 pokemon = modelo.decode("utf-8")
                 pokedex.append(pokemon)
-            displayPokedex(pokedex)
+            print(pokedex)
+            #displayPokedex(pokedex)
     except socket.timeout: #No recibe respuesta del servidor
         terminarConTimeout(soc)
     except IndexError : #El Servidor manda un timeout
