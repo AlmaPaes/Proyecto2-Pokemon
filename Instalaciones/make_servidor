@@ -16,41 +16,35 @@ if [ "$opcion" == "-i" ]
 
         echo Instalación de la base de datos TCP201-Pokemon... ;
 
-        echo Contraseña del usuario root: ; 
-        mysql -u root -p < create_user.sql ;
-
-        echo Contraseña del usuario doggos: doggos2020 ;
-        mysql -u doggos -p < create_database.sql ;
-
-        mysql -u doggos -p -D TCP201-Pokemon < TCP201-Pokemon_Pokemon.sql ;
-
-        mysql -u doggos -p -D TCP201-Pokemon < TCP201-Pokemon_Pokedex.sql ;
-
-        mysql -u doggos -p -D TCP201-Pokemon < TCP201-Pokemon_Usuario.sql ;
+        #mysql -u $userDB -p < make_database.sql ;
+        sudo mysql < make_database.sql ;
+        sudo mysql < create_user.sql ;
         
         echo Instalación de dependencias de Python ;
-        pip install mysql-connector-python ;
-        pip install sockets ;
-        pip install threaded ;
+        pip3 install mysql-connector-python ;
+        pip3 install sockets ;
+        pip3 install threaded ;
         
 
         echo Ejecución del servidor... ; 
         cd ..
         ./pokemonServer.py ;
         
-    elif ["$opcion" == "-d"]
+    elif [ "$opcion" == "-d" ]
         then echo Eliminando el manual de Linux ... 
             cd $rutaMan ;
             sudo rm server.7.gz ;
         
             cd $rutaRoot
-            echo Desinstalando base de datos TCP201-Pokemon...
-            echo Contraseña del usuario doggos: doggos2020 ;
-            mysql -u doggos -p < delete_database.sql ;
+            echo Desinstalando base de datos TCP201-Pokemon... ;
+#            echo Ingrese el usuario de mysql propietario de la base de datos:
+
+#            read userDB ;
+
+            sudo mysql < delete_database.sql
     else
-        echo Uso para instalar sevidor: ./make_servidor -i
-        echo Uso para desinstalar servidor: ./make_servidor -d
-        
+        echo Uso para instalar sevidor: ./make_servidor -i ;
+        echo Uso para desinstalar servidor: ./make_servidor -d ;
         
 fi
 

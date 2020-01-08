@@ -148,7 +148,8 @@ def muestraPokedex(soc):
                 modelo = soc.recv(pokemon_size)
                 pokemon = modelo.decode("utf-8")
                 pokedex.append(pokemon)
-            displayPokedex(pokedex)
+            print(pokedex)
+            #displayPokedex(pokedex)
     except socket.timeout: #No recibe respuesta del servidor
         terminarConTimeout(soc)
     except IndexError : #El Servidor manda un timeout
@@ -244,8 +245,11 @@ def main():
     """ Función principal
     """
     soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    host = sys.argv[1]
-    port = int(sys.argv[2])
+    try:
+        host = sys.argv[1]
+        port = int(sys.argv[2])
+    except IndexError:
+        print("Debe ingresar los parametros")
     try:
         soc.connect((host, port))
         soc.settimeout(20)

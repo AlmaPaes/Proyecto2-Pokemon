@@ -1,0 +1,320 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Pokemon Go! &mdash; documentación de Proyecto2-Pokemon - </title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/jquery.fancybox.min.css" type="text/css" />
+  
+    <link rel="stylesheet" href="_static/glpi.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Índice"
+              href="genindex.html"/>
+        <link rel="search" title="Búsqueda" href="search.html"/>
+    <link rel="top" title="documentación de Proyecto2-Pokemon - " href="#"/>
+        <link rel="next" title="Cliente Pokemon Go!" href="pokemonClient.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="#" class="icon icon-home"> Proyecto2-Pokemon
+          
+
+          
+          </a>
+
+          
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pokemonClient.html">Cliente Pokemon Go!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pokemonServer.html">Servidor Pokemon Go!</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Proyecto2-Pokemon</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>Pokemon Go!</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="pokemonClient.html" class="btn btn-neutral float-right" title="Cliente Pokemon Go!" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pokemon-go">
+<h1>Pokemon Go!<a class="headerlink" href="#pokemon-go" title="Enlazar permanentemente con este título">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Bienvenido a la documentación del Proyecto 2 de la materia de Redes de Computadoras</p>
+</div>
+<div class="section" id="como-usar">
+<h2>¿Cómo usar?<a class="headerlink" href="#como-usar" title="Enlazar permanentemente con este título">¶</a></h2>
+<div class="section" id="requisitos-de-preinstalacion">
+<h3>Requisitos de preinstalación<a class="headerlink" href="#requisitos-de-preinstalacion" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Se asumirá que se utiliza un SO Debian para la instalación.</p>
+<p>Se requieren los siguientes programas para la correcta instalación y funcionamiento de la aplicación:</p>
+<ul class="simple">
+<li><p>Python versión 3.</p></li>
+<li><p>Instalador <em>pip3</em></p></li>
+<li><p>Manejador de bases de datos <em>mysql</em></p></li>
+</ul>
+<p>Además, sin importar si se fungirá la función de cliente o servidor, el usuario del equipo que se ejecutará debe estar dentro del grupo <em>sudoers</em>. Esto debido a que la instalación de la documentación en Linux (man) se realiza en la ruta <em>/usr/share/man/man7</em></p>
+</div>
+<div class="section" id="quieres-instalar">
+<h3>¿Quieres instalar?<a class="headerlink" href="#quieres-instalar" title="Enlazar permanentemente con este título">¶</a></h3>
+<ul class="simple">
+<li><p>Servidor: Dirigirse a la carpeta <em>./Instalaciones</em> y ejecutar <em>./make_servidor -i</em>.</p></li>
+<li><p>Cliente: Dirigirse a la carpeta <em>./Instalaciones</em> y ejecutar <em>./make_cliente -i</em></p></li>
+</ul>
+</div>
+<div class="section" id="no-es-la-primera-vez">
+<h3>¿No es la primera vez?<a class="headerlink" href="#no-es-la-primera-vez" title="Enlazar permanentemente con este título">¶</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Primero inicializamos el servidor, y después los clientes pueden iniciar una conexión</p>
+</div>
+<ul>
+<li><p>Para el servidor</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>En una terminal, nos situamos en la ubicación del archivo <em>pokemonServer.py</em></p></li>
+<li><p>No necesitamos parámetros extra para ejecutar el servidor. <em>./pokemonServer.py</em></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Para el cliente</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>En una terminal, nos situamos en la ubicación del archivo <em>pokemonClient.py</em></p></li>
+<li><p>Este programa recibe como parámetros iniciales la dirección IP a través de la cual se quiere conectar, y el puerto. Por lo tanto, ejecutamos de la siguiente manera: <em>./pokemonClient.py &lt;IP&gt; &lt;port&gt;</em></p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>El puerto ingresado al ejecutar el cliente debe ser el mismo que usa el servidor</p>
+</div>
+</div>
+<div class="section" id="quieres-desinstalar">
+<h3>¿Quieres desinstalar?<a class="headerlink" href="#quieres-desinstalar" title="Enlazar permanentemente con este título">¶</a></h3>
+<ul class="simple">
+<li><p>Servidor: Dirigirse a la carpeta <em>./Instalaciones</em> y ejecutar <em>./make_servidor -d</em></p></li>
+<li><p>Cliente: Dirigirse a la carpeta <em>./Instalaciones</em> y ejecutar <em>./make_cliente -d</em></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="programas-involucrados">
+<h2>Programas involucrados<a class="headerlink" href="#programas-involucrados" title="Enlazar permanentemente con este título">¶</a></h2>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pokemonClient.html">Cliente Pokemon Go!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pokemonServer.html">Servidor Pokemon Go!</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pokemonClient.html" class="btn btn-neutral float-right" title="Cliente Pokemon Go!" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Doggos.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            LANGUAGE:'es',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/language_data.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+      <script type="text/javascript" src="_static/jquery.fancybox.min.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+  <script type="text/javascript">
+    $(function(){
+      $('.image-reference').fancybox();
+    })
+  </script>
+
+</body>
+</html>

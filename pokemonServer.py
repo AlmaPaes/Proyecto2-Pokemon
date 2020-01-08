@@ -132,7 +132,6 @@ def giveAccess(connection,max_buffer_size = 5120):
         if todo is not None:
             nombre = todo[0]
             correctPsswd = todo[1]
-            
         acceso = ACCESO_DENEGADO
         if correctPsswd == psswd:
             acceso = ACCESO_PERMITIDO
