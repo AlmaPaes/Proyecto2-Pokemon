@@ -14,13 +14,17 @@ Pokemon Go!
 Requisitos de preinstalación
 ----------------------------
 
-Para la correcta instalación de la aplicación, se requiere de los siguientes programas:
+Se asumirá que se utiliza un SO Debian para la instalación.
+
+Se requieren los siguientes programas para la correcta instalación y funcionamiento de la aplicación:
 
 * Python versión 3.
 
 * Instalador *pip3*
 
 * Manejador de bases de datos *mysql*
+
+Además, sin importar si se fungirá la función de cliente o servidor, el usuario del equipo que se ejecutará debe estar dentro del grupo *sudoers*. Esto debido a que la instalación de la documentación en Linux (man) se realiza en la ruta */usr/share/man/man7*
 
 
 
