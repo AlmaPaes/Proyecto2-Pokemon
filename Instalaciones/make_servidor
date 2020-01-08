@@ -4,8 +4,6 @@ opcion=$1
 rutaMan=/usr/share/man/man7
 rutaRoot=$(pwd)
 
-userDB=
-
 if [ "$opcion" == "-i" ]
     then echo Instalación del manual del servidor en Linux... ;
         echo . ;
@@ -17,9 +15,6 @@ if [ "$opcion" == "-i" ]
         sudo mandb ;
 
         echo Instalación de la base de datos TCP201-Pokemon... ;
-        echo Ingrese el usuario de mysql que será propietario de la base de datos:
-        
-        read userDB ;
 
         #mysql -u $userDB -p < make_database.sql ;
         sudo mysql < make_database.sql ;

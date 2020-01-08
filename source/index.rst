@@ -31,7 +31,7 @@ Además, sin importar si se fungirá la función de cliente o servidor, el usuar
 ¿Quieres instalar?
 ------------------
 
-* Servidor: Dirigirse a la carpeta *./Instalaciones* y ejecutar *./make_servidor -i*
+* Servidor: Dirigirse a la carpeta *./Instalaciones* y ejecutar *./make_servidor -i*. 
 
 * Cliente: Dirigirse a la carpeta *./Instalaciones* y ejecutar *./make_cliente -i*
 
