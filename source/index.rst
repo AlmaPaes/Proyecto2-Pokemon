@@ -11,6 +11,19 @@ Pokemon Go!
 ¿Cómo usar?
 ===========
 
+Requisitos de preinstalación
+----------------------------
+
+Para la correcta instalación de la aplicación, se requiere de los siguientes programas:
+
+* Python versión 3.
+
+* Instalador *pip3*
+
+* Manejador de bases de datos *mysql*
+
+
+
 ¿Quieres instalar?
 ------------------
 

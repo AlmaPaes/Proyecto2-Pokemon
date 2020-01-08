@@ -14,23 +14,24 @@ if [ "$opcion" == "-i" ]
         sudo mandb ;
         
         echo Instalación de dependencias de Python ;
-        pip install matplotlib ;
-        pip install Pillow ;
-        pip install numpy ;
+        pip3 install matplotlib ;
+        pip3 install Pillow ;
+        pip3 install numpy ;
         echo Instalando tkinter con sudo apt-get install python3-tk. Puede fallar, dependiendo de su SO y versión de Python ;
-        pip install mysql-connector-python ;
+        sudo apt-get install python3-tk ;
+        pip3 install mysql-connector-python ;
         
         echo Ejecución del cliente... ;
         cd ..
         ./pokemonClient.py 127.0.0.1 9999;
         
-    elif ["$opcion" == "-d"]
-        then echo Eliminando el manual de Linux ... 
+    elif [ "$opcion" == "-d" ]
+        then echo Eliminando el manual de Linux ... ;
             cd $rutaMan ;
             sudo rm client.7.gz ;
             
     else
-        echo Uso para instalar cliente: ./make_cliente -i
-        echo Uso para desinstalar cliente: ./make_cliente -d
+        echo Uso para instalar cliente: ./make_cliente -i ;
+        echo Uso para desinstalar cliente: ./make_cliente -d ;
         
 fi
